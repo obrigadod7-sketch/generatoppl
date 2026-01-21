@@ -40,14 +40,14 @@ const Index = () => {
         {/* HERO (imagem + overlay) */}
          <section
            aria-label={t("home_hero_aria")}
-           className="relative w-full overflow-hidden"
+            className="relative w-full overflow-hidden bg-mel-banner3"
          >
            {/*
             * Height strategy:
             * - mobile/tablet: fill the visible viewport (minus the fixed header spacing applied by <main>)
             * - desktop: full screen hero
             */}
-           <div className="relative h-[calc(62svh-96px)] min-h-[320px] w-full sm:h-[calc(70svh-96px)] md:h-[calc(72svh-96px)] lg:h-screen lg:min-h-[775px]">
+            <div className="relative h-[calc(62svh-96px)] min-h-[320px] w-full bg-mel-banner3 sm:h-[calc(70svh-96px)] md:h-[calc(72svh-96px)] lg:h-screen lg:min-h-[775px]">
            {/*
             * Mobile/Tablet: keep the whole banner (contain) and fill the remaining area with a blurred cover background
             * to avoid black letterbox bars.
@@ -64,7 +64,7 @@ const Index = () => {
            <img
              src={heroBanner}
              alt="Banner da Missão Evangélica Lusitana"
-             className="absolute inset-0 h-full w-full bg-mel-banner3 object-contain object-center saturate-75 contrast-95 brightness-105 grayscale-[10%] lg:object-cover"
+              className="absolute inset-0 h-full w-full object-contain object-center saturate-75 contrast-95 brightness-105 grayscale-[10%] lg:object-cover"
              loading="eager"
              decoding="async"
              fetchPriority="high"
