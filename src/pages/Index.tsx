@@ -1,5 +1,4 @@
-import heroImageDesktop from "@/assets/hero-oficial-2-1-claro-hq.png";
-import heroImageMobile from "@/assets/hero-oficial-2-1-claro.png";
+import heroBanner from "@/assets/oficial-2-1.png";
 import pastoralImage from "@/assets/familia-pastoral.png";
 import bgCultos from "@/assets/bg-cultos-ao-vivo-celulas-match.jpg";
 import bgCelulas from "@/assets/bg-celulas-nas-casas-cultos-match.jpg";
@@ -49,17 +48,14 @@ const Index = () => {
             * - desktop: full screen hero
             */}
            <div className="relative h-[calc(100svh-96px)] min-h-[460px] w-full md:h-screen md:min-h-[775px]">
-          <picture>
-            <source media="(max-width: 768px)" srcSet={heroImageMobile} />
-            <img
-              src={heroImageDesktop}
-              alt="Banner da Missão Evangélica Lusitana"
-               className="absolute inset-0 h-full w-full object-cover object-center saturate-75 contrast-95 brightness-105 grayscale-[10%]"
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-            />
-          </picture>
+           <img
+             src={heroBanner}
+             alt="Banner da Missão Evangélica Lusitana"
+             className="absolute inset-0 h-full w-full object-cover object-center saturate-75 contrast-95 brightness-105 grayscale-[10%]"
+             loading="eager"
+             decoding="async"
+             fetchPriority="high"
+           />
 
           {/* overlay mais claro (mantém a identidade azul sem escurecer) */}
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-mel-overlay/30 to-mel-overlay/30" />
