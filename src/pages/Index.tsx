@@ -39,13 +39,22 @@ const Index = () => {
 
         <main className="pt-[96px] md:pt-0">
         {/* HERO (imagem + overlay) */}
-         <section aria-label={t("home_hero_aria")} className="relative min-h-[460px] w-full overflow-hidden md:min-h-[775px]">
+         <section
+           aria-label={t("home_hero_aria")}
+           className="relative w-full overflow-hidden"
+         >
+           {/*
+            * Height strategy:
+            * - mobile/tablet: fill the visible viewport (minus the fixed header spacing applied by <main>)
+            * - desktop: full screen hero
+            */}
+           <div className="relative h-[calc(100svh-96px)] min-h-[460px] w-full md:h-screen md:min-h-[775px]">
           <picture>
             <source media="(max-width: 768px)" srcSet={heroImageMobile} />
             <img
               src={heroImageDesktop}
               alt="Banner da Missão Evangélica Lusitana"
-              className="absolute inset-0 h-full w-full object-cover saturate-75 contrast-95 brightness-105 grayscale-[10%]"
+               className="absolute inset-0 h-full w-full object-cover object-center saturate-75 contrast-95 brightness-105 grayscale-[10%]"
               loading="eager"
               decoding="async"
               fetchPriority="high"
@@ -62,9 +71,10 @@ const Index = () => {
             style={{ backgroundImage: `url(${paperTexture})`, backgroundRepeat: "repeat" }}
           />
 
-          {/* Conteúdo do hero (sem texto/CTA) */}
-          <div className="relative z-30 px-6 py-24 sm:px-10 sm:py-28 md:px-[276px] md:py-[276px] max-[980px]:px-[113px] max-[980px]:py-[113px]" />
-        </section>
+           {/* Conteúdo do hero (sem texto/CTA) - apenas garante o espaçamento/altura */}
+           <div className="relative z-30 h-full" />
+           </div>
+         </section>
 
         {/* Bloco (desktop) - Estudo bíblico + Oração (como Elementor) */}
         <section aria-label={t("home_study_desktop_aria")} className="hidden bg-mel-blue800 md:block">
