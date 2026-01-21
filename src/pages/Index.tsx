@@ -48,6 +48,19 @@ const Index = () => {
             * - desktop: full screen hero
             */}
            <div className="relative h-[calc(62svh-96px)] min-h-[320px] w-full sm:h-[calc(70svh-96px)] md:h-[calc(72svh-96px)] lg:h-screen lg:min-h-[775px]">
+           {/*
+            * Mobile/Tablet: keep the whole banner (contain) and fill the remaining area with a blurred cover background
+            * to avoid black letterbox bars.
+            */}
+           <img
+             src={heroBanner}
+             alt=""
+             aria-hidden
+             className="absolute inset-0 h-full w-full bg-mel-banner3 object-cover object-center opacity-70 blur-xl scale-110 lg:hidden"
+             loading="eager"
+             decoding="async"
+             fetchPriority="high"
+           />
            <img
              src={heroBanner}
              alt="Banner da Missão Evangélica Lusitana"
