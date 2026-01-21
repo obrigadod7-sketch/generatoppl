@@ -1,4 +1,5 @@
 import { Facebook, Instagram, MapPin, Youtube } from "lucide-react";
+import * as React from "react";
 
 type LocationCardProps = {
   title: string;
@@ -53,19 +54,24 @@ type SocialLinkProps = {
   children: React.ReactNode;
 };
 
-const SocialLink = ({ href, label, children }: SocialLinkProps) => {
-  return (
-    <a
-      href={href}
-      aria-label={label}
-      className="inline-flex h-12 w-12 items-center justify-center border border-border bg-mel-overlay/85 text-primary-foreground transition-colors hover:bg-mel-overlay"
-      target="_blank"
-      rel="noreferrer"
-    >
-      {children}
-    </a>
-  );
-};
+const SocialLink = React.forwardRef<HTMLAnchorElement, SocialLinkProps>(
+  ({ href, label, children }, ref) => {
+    return (
+      <a
+        ref={ref}
+        href={href}
+        aria-label={label}
+        className="inline-flex h-12 w-12 items-center justify-center border border-border bg-mel-overlay/85 text-primary-foreground transition-colors hover:bg-mel-overlay"
+        target="_blank"
+        rel="noreferrer"
+      >
+        {children}
+      </a>
+    );
+  }
+);
+
+SocialLink.displayName = "SocialLink";
 
 export const SiteFooter = () => {
   return (
