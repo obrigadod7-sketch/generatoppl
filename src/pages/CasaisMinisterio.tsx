@@ -274,7 +274,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
     <div className="min-h-screen bg-background text-foreground">
       <ElementorHeader />
 
-      <main className="pt-24 md:pt-28">
+      <main>
         {/* HERO */}
         <section aria-label="Banner principal" className="relative min-h-auto sm:min-h-[70vh]">
           <div className="absolute inset-0">

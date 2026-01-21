@@ -36,7 +36,7 @@ const Index = () => {
       {/* Header sobre o hero (como Elementor) */}
       <ElementorHeader />
 
-        <main className="pt-[96px] md:pt-0">
+      <main>
         {/* HERO (imagem + overlay) */}
          <section
            aria-label={t("home_hero_aria")}
