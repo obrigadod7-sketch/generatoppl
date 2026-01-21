@@ -47,7 +47,7 @@ const Index = () => {
             * - mobile/tablet: fill the visible viewport (minus the fixed header spacing applied by <main>)
             * - desktop: full screen hero
             */}
-            <div className="relative h-[calc(62svh-96px)] min-h-[320px] w-full bg-mel-banner3 sm:h-[calc(70svh-96px)] md:h-[calc(72svh-96px)] lg:h-screen lg:min-h-[775px]">
+            <div className="relative w-full bg-mel-banner3 aspect-[2/1] max-h-[52svh] sm:max-h-[58svh] lg:h-screen lg:max-h-none lg:min-h-[775px] lg:aspect-auto">
            {/*
             * Mobile/Tablet: keep the whole banner (contain) and fill the remaining area with a blurred cover background
             * to avoid black letterbox bars.
