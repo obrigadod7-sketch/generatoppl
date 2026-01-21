@@ -1,0 +1,174 @@
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, PauseCircle, PlayCircle, Volume2, VolumeX } from "lucide-react";
+import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
+import { useI18n } from "@/i18n/I18nProvider";
+
+export function ElementorHeader() {
+  const { t } = useI18n();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+
+  const nav = [
+    { href: "/estudo", label: t("nav_estudo") },
+    { href: "/cultos-ao-vivo", label: t("nav_cultos") },
+    { href: "/ministerios", label: t("nav_ministerios") },
+    { href: "/cantina", label: t("nav_cantina") },
+    { href: "#celulas", label: t("nav_celulas") },
+    { href: "#pastoral", label: t("nav_familia_pastoral") },
+  ];
+
+  useEffect(() => {
+    audioRef.current = new Audio("https://igrejamissaolusitana.radiostream321.com/");
+    audioRef.current.volume = 0.7;
+    
+    return () => {
+      audioRef.current?.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+      return;
+    }
+
+    audioRef.current
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(() => {
+        // browsers can block autoplay until user gesture; keep UI consistent
+        setIsPlaying(false);
+      });
+  };
+
+  const toggleMute = () => {
+    if (!audioRef.current) return;
+    audioRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 bg-mel-blue700/90 py-6 backdrop-blur-sm md:absolute md:bg-transparent md:py-0">
+      <div className="mx-auto w-full max-w-[1600px] px-6">
+        {/* Mobile: barra azul + hamburger central */}
+        <div className="flex items-center justify-center md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                className="h-12 w-12 rounded-md border-0 bg-card text-foreground shadow-elev"
+                aria-label="Abrir menu"
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[320px]">
+              <SheetHeader>
+                <SheetTitle className="font-display">{t("menu")}</SheetTitle>
+              </SheetHeader>
+              <div className="mt-4">
+                <LanguageSwitcher />
+              </div>
+              <div className="mt-6 grid gap-2">
+                {nav.map((item) => (
+                  <Button key={item.href} asChild variant="soft" className="justify-start">
+                    {item.href.startsWith("/") ? <Link to={item.href}>{item.label}</Link> : <a href={item.href}>{item.label}</a>}
+                  </Button>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+
+        {/* Desktop: rádio + menu */}
+        <div className="hidden grid-cols-[15.39%_84.61%] items-center md:grid">
+          {/* Rádio (esquerda) */}
+          <div className="flex items-center justify-start">
+            <div className="inline-flex items-center gap-2.5 rounded-lg bg-gradient-to-br from-card/95 to-card/90 px-3 py-2 shadow-lg ring-1 ring-mel-blue800/20 backdrop-blur-sm">
+              <button
+                type="button"
+                onClick={togglePlay}
+                aria-label={isPlaying ? t("radio_pause") : t("radio_play")}
+                className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-mel-blue700 to-mel-blue800 text-primary-foreground transition-all hover:scale-105 hover:shadow-md active:scale-95"
+              >
+                {isPlaying ? (
+                  <PauseCircle className="h-5 w-5" />
+                ) : (
+                  <PlayCircle className="h-5 w-5" />
+                )}
+              </button>
+
+              <span className="inline-flex items-center rounded-sm bg-destructive px-2 py-1 font-display text-[9px] font-bold uppercase tracking-[0.25em] text-destructive-foreground shadow-sm">
+                {t("live")}
+              </span>
+
+              <button
+                type="button"
+                onClick={toggleMute}
+                aria-label={isMuted ? t("unmute") : t("mute")}
+                className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-mel-blue700/80 to-mel-blue800/80 text-primary-foreground transition-all hover:scale-105 hover:shadow-md active:scale-95"
+              >
+                {isMuted ? (
+                  <VolumeX className="h-5 w-5" />
+                ) : (
+                  <Volume2 className="h-5 w-5" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Menu (direita) */}
+          <div className="grid grid-cols-[1fr_auto] items-center gap-3">
+            <nav className="w-[96.963%] justify-center md:flex" aria-label="Menu">
+              <ul className="flex items-center justify-center">
+                {nav.map((item, idx) => (
+                  <li key={item.href} className="relative px-[6px]">
+                    {item.href.startsWith("/") ? (
+                      <Link
+                        to={item.href}
+                        className="inline-flex items-center font-display text-[15px] font-normal uppercase tracking-[0.28em] text-primary-foreground hover:text-primary-foreground/80"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className="inline-flex items-center font-display text-[15px] font-normal uppercase tracking-[0.28em] text-primary-foreground hover:text-primary-foreground/80"
+                      >
+                        {item.label}
+                      </a>
+                    )}
+
+                    {/* divisores */}
+                    {idx !== nav.length - 1 && (
+                      <span
+                        aria-hidden
+                        className="absolute right-[-1px] top-1/2 h-[30px] w-[2px] -translate-y-1/2 border-l-2 border-double border-mel-divider"
+                      />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="flex justify-end">
+              <LanguageSwitcher />
+            </div>
+
+            {/* Desktop: mantém hamburger escondido */}
+            <div className="hidden justify-end" aria-hidden />
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

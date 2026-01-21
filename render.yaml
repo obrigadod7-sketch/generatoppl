@@ -1,0 +1,15 @@
+# Render blueprint for deploying this Vite + React SPA as a Static Site
+# Docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: static_site
+    name: missao-evangelica-lusitana
+    env: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    pullRequestPreviewsEnabled: true
+    routes:
+      # SPA fallback for react-router-dom (ex.: /estudo)
+      - type: rewrite
+        source: "/*"
+        destination: /index.html
