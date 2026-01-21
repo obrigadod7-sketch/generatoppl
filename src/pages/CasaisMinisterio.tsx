@@ -284,7 +284,8 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               className="h-full w-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/15 via-background/65 to-background" />
+             {/* Gradiente com tonalidade azul no rodapé (coerente com a paleta do site) */}
+             <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/45 to-mel-blue800/95" />
           </div>
 
           <div className="relative mx-auto flex w-full max-w-[1200px] flex-col px-4 py-10 sm:px-6 sm:py-16">
