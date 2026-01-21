@@ -4,8 +4,11 @@ import { ElementorHeader } from "@/components/site/ElementorHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function Cantina() {
+  const { t } = useI18n();
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <ElementorHeader />
@@ -34,24 +37,24 @@ export default function Cantina() {
             <div className="relative z-10 mx-auto w-full max-w-[1155px] px-6 py-16 md:py-20">
               <div className="max-w-[760px]">
                 <p className="font-display text-[12px] font-semibold uppercase tracking-[0.35em] text-primary-foreground/90">
-                  Comunhão • Apoio • Missões
+                  {t("cantina_kicker")}
                 </p>
                 <h1 className="mt-4 font-display text-[40px] font-semibold uppercase tracking-[0.06em] text-primary-foreground md:text-[56px]">
-                  Cantina da Igreja
+                  {t("cantina_title")}
                 </h1>
                 <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-primary-foreground/85">
-                  Um espaço simples para servir, acolher e ajudar. Confira os horários e o que está disponível.
+                  {t("cantina_subtitle")}
                 </p>
 
                 <div className="mt-8 flex flex-wrap items-center gap-2">
                   <Badge className="bg-card/85 text-foreground ring-1 ring-border backdrop-blur">
-                    Após os cultos
+                    {t("cantina_badge_after")}
                   </Badge>
                   <Badge className="bg-card/85 text-foreground ring-1 ring-border backdrop-blur">
-                    Café • Lanches • Doces
+                    {t("cantina_badge_menu")}
                   </Badge>
                   <Badge className="bg-card/85 text-foreground ring-1 ring-border backdrop-blur">
-                    Pagamento no local
+                    {t("cantina_badge_payment")}
                   </Badge>
                 </div>
               </div>
@@ -60,29 +63,32 @@ export default function Cantina() {
         </header>
 
         {/* CONTEÚDO */}
-        <section aria-label="Informações da cantina" className="bg-background">
+        <section aria-label={t("cantina_info_aria")} className="bg-background">
           <div className="mx-auto w-full max-w-[1155px] px-6 py-12 md:py-14">
             <div className="grid gap-6 md:grid-cols-3">
               <Card className="p-6 shadow-elev ring-1 ring-border">
-                <h2 className="font-display text-[18px] uppercase tracking-[0.22em] text-foreground">Horários</h2>
+                <h2 className="font-display text-[18px] uppercase tracking-[0.22em] text-foreground">{t("cantina_hours")}</h2>
                 <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-                  Normalmente abrimos <span className="text-foreground">antes</span> e <span className="text-foreground">após</span> os cultos.
-                  <br />
-                  (Ajuste conforme a programação.)
+                  {t("cantina_hours_text").split("\\n").map((line, idx) => (
+                    <span key={idx}>
+                      {line}
+                      {idx === 0 ? <br /> : null}
+                    </span>
+                  ))}
                 </p>
               </Card>
 
               <Card className="p-6 shadow-elev ring-1 ring-border">
-                <h2 className="font-display text-[18px] uppercase tracking-[0.22em] text-foreground">Cardápio</h2>
+                <h2 className="font-display text-[18px] uppercase tracking-[0.22em] text-foreground">{t("cantina_menu")}</h2>
                 <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-                  Café, chá, refrigerantes, água, salgados e doces.
+                  {t("cantina_menu_text")}
                 </p>
               </Card>
 
               <Card className="p-6 shadow-elev ring-1 ring-border">
-                <h2 className="font-display text-[18px] uppercase tracking-[0.22em] text-foreground">Objetivo</h2>
+                <h2 className="font-display text-[18px] uppercase tracking-[0.22em] text-foreground">{t("cantina_goal")}</h2>
                 <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-                  A renda ajuda em ações da igreja e apoio a projetos.
+                  {t("cantina_goal_text")}
                 </p>
               </Card>
             </div>
@@ -90,10 +96,10 @@ export default function Cantina() {
             <div className="mt-10 rounded-xl bg-gradient-to-br from-mel-blueA to-mel-blueB p-px">
               <div className="rounded-[11px] bg-card px-6 py-8 md:px-8">
                 <h2 className="font-display text-[20px] font-semibold uppercase tracking-[0.18em] text-foreground">
-                  Quer ajudar na cantina?
+                  {t("cantina_help_title")}
                 </h2>
                 <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-                  Se você deseja servir como voluntário(a) em um domingo, fale com a liderança após o culto.
+                  {t("cantina_help_text")}
                 </p>
               </div>
             </div>

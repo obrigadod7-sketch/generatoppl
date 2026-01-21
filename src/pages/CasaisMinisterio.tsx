@@ -31,6 +31,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const signupSchema = z.object({
   name: z
@@ -178,6 +179,7 @@ const SectionTitle = forwardRef<
 
 export default function CasaisMinisterio({ ministerio }: { ministerio: Ministerio }) {
   const [openImage, setOpenImage] = useState<string | null>(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     document.title = `${ministerio.titulo} | Missão Evangélica Lusitana`;
@@ -258,13 +260,13 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
       if (error) throw error;
 
       toast({
-        title: "Inscrição enviada",
-        description: "Recebemos seus dados. Em breve entraremos em contacto.",
+        title: t("couples_signup_sent"),
+        description: t("couples_signup_sent_desc"),
       });
       form.reset();
     } catch (e) {
-      const msg = e instanceof Error ? e.message : "Não foi possível enviar agora.";
-      toast({ title: "Erro", description: msg, variant: "destructive" });
+      const msg = e instanceof Error ? e.message : t("couples_signup_error");
+      toast({ title: t("error"), description: msg, variant: "destructive" });
     }
   };
 
@@ -287,10 +289,10 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
 
           <div className="relative mx-auto flex w-full max-w-[1200px] flex-col px-4 py-10 sm:px-6 sm:py-16">
             <p className="font-display text-[11px] font-semibold uppercase tracking-[0.35em] text-primary-foreground/90">
-              Ministério de Casais
+              {t("couples_ministry")}
             </p>
             <h1 className="mt-2 max-w-3xl font-display text-[clamp(2rem,5vw,3.5rem)] font-semibold uppercase leading-[1.12] tracking-[0.12em] text-primary-foreground sm:mt-3">
-              {ministerio.subtitulo || "Fortalecendo famílias e alianças"}
+              {ministerio.subtitulo || t("couples_default_subtitle")}
             </h1>
             {ministerio.versiculo ? (
               <p className="mt-3 max-w-2xl text-sm text-primary-foreground/90 md:text-base">
@@ -300,10 +302,10 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
 
             <div className="mt-6 flex flex-col gap-2 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-3">
               <Button asChild variant="hero" size="lg" className="w-full sm:w-auto">
-                <a href="#participar">Participe dos encontros</a>
+                <a href="#participar">{t("couples_cta_join")}</a>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link to="/ministerios">Ver outros ministérios</Link>
+                <Link to="/ministerios">{t("couples_cta_other")}</Link>
               </Button>
             </div>
 
@@ -312,25 +314,25 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                 href="#identidade"
                 className="rounded-md border border-border bg-card/70 px-3 py-2 text-sm text-foreground backdrop-blur-sm transition-colors hover:bg-card"
               >
-                Identidade
+                {t("couples_nav_identity")}
               </a>
               <a
                 href="#agenda"
                 className="rounded-md border border-border bg-card/70 px-3 py-2 text-sm text-foreground backdrop-blur-sm transition-colors hover:bg-card"
               >
-                Agenda
+                {t("couples_nav_agenda")}
               </a>
               <a
                 href="#conteudo"
                 className="rounded-md border border-border bg-card/70 px-3 py-2 text-sm text-foreground backdrop-blur-sm transition-colors hover:bg-card"
               >
-                Conteúdo
+                {t("couples_nav_content")}
               </a>
               <a
                 href="#participar"
                 className="rounded-md border border-border bg-card/70 px-3 py-2 text-sm text-foreground backdrop-blur-sm transition-colors hover:bg-card"
               >
-                Inscrição
+                {t("couples_nav_signup")}
               </a>
             </div>
           </div>
@@ -340,15 +342,15 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
         <section className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:py-20">
           <SectionTitle
             id="identidade"
-            kicker="Nossa identidade"
+            kicker={t("couples_identity_kicker")}
             title={ministerio.titulo}
-            subtitle="Uma caminhada para casais que desejam viver fé, amor e propósito no dia a dia."
+            subtitle={t("couples_identity_subtitle")}
           />
 
           <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Missão</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_mission")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
@@ -358,7 +360,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
             </Card>
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Visão</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_vision")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
@@ -368,7 +370,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
             </Card>
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Valores</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_values")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -390,18 +392,15 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
         <section className="bg-muted/20">
           <div className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:py-20">
             <SectionTitle
-              kicker="Sobre"
-              title="Um lugar seguro para crescer"
-              subtitle={
-                ministerio.descricao ||
-                "Cremos que o casamento é uma aliança diante de Deus. Aqui, caminhamos juntos para fortalecer amor, diálogo, perdão e fé."
-              }
+              kicker={t("couples_about_kicker")}
+              title={t("couples_about_title")}
+              subtitle={ministerio.descricao || t("couples_about_default")}
             />
 
             <div className="mt-6 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2">
               <Card className="shadow-none sm:shadow-elev">
                 <CardHeader>
-                  <CardTitle className="font-display uppercase tracking-[0.12em]">Para quem é</CardTitle>
+                  <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_for_who")}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 pt-0 px-4 pb-4 sm:space-y-5 sm:px-6 sm:pb-6">
                   <FeatureItem
@@ -424,7 +423,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
 
               <Card className="shadow-none sm:shadow-elev">
                 <CardHeader>
-                  <CardTitle className="font-display uppercase tracking-[0.12em]">Como funciona</CardTitle>
+                  <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_how_it_works")}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 pt-0 px-4 pb-4 sm:space-y-5 sm:px-6 sm:pb-6">
                   <FeatureItem
@@ -452,9 +451,9 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
         <section className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:py-20">
           <SectionTitle
             id="agenda"
-            kicker="Programação"
-            title="Agenda e próximos encontros"
-            subtitle="Veja as próximas datas e adicione ao seu calendário em um clique."
+            kicker={t("couples_program_kicker")}
+            title={t("couples_program_title")}
+            subtitle={t("couples_program_subtitle")}
           />
 
           <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 md:grid-cols-2">
@@ -471,7 +470,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                 <Card key={evt.id} className={(isNext ? "ring-1 ring-ring " : "") + "shadow-none sm:shadow-elev"}>
                   <CardHeader>
                     <CardTitle className="font-display uppercase tracking-[0.12em]">
-                      {isNext ? "Próximo encontro" : "Encontro"}
+                      {isNext ? t("couples_next_event") : t("couples_event")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
@@ -493,7 +492,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                     <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap">
                       <Button asChild variant="secondary" className="w-full sm:w-auto">
                         <a href={googleUrl} target="_blank" rel="noreferrer">
-                          Adicionar ao Google
+                          {t("couples_add_google")}
                         </a>
                       </Button>
                       <Button
@@ -511,7 +510,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                           downloadICS(`evento-${evt.id}.ics`, ics);
                         }}
                       >
-                        Baixar .ics
+                        {t("couples_download_ics")}
                       </Button>
                     </div>
                   </CardContent>
@@ -526,9 +525,9 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
           <section className="bg-muted/20">
             <div className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:py-20">
               <SectionTitle
-                kicker="Momentos"
-                title="Galeria de fotos"
-                subtitle="Encontros, retiros e eventos — memórias que edificam."
+                kicker={t("couples_gallery_kicker")}
+                title={t("couples_gallery_title")}
+                subtitle={t("couples_gallery_subtitle")}
               />
 
               <div className="mt-6 grid gap-2 sm:mt-10 sm:gap-3 sm:grid-cols-2 md:grid-cols-4">
@@ -554,7 +553,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               <Dialog open={!!openImage} onOpenChange={(v) => !v && setOpenImage(null)}>
                 <DialogContent className="max-w-[980px]">
                   <DialogHeader>
-                    <DialogTitle className="font-display uppercase tracking-[0.12em]">Galeria</DialogTitle>
+                        <DialogTitle className="font-display uppercase tracking-[0.12em]">{t("couples_gallery_title")}</DialogTitle>
                   </DialogHeader>
                   {openImage ? (
                     <div className="relative overflow-hidden rounded-md border border-border bg-muted">
@@ -571,15 +570,15 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
         <section className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:py-20">
           <SectionTitle
             id="conteudo"
-            kicker="Conteúdo edificante"
-            title="Palavra para o lar"
-            subtitle="Devocionais curtos, princípios bíblicos e testemunhos para fortalecer o casamento."
+            kicker={t("couples_content_kicker")}
+            title={t("couples_content_title")}
+            subtitle={t("couples_content_subtitle")}
           />
 
           <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 md:grid-cols-3">
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Devocional</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_devotional")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
@@ -590,7 +589,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
             </Card>
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Artigo curto</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_article")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
@@ -601,7 +600,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
             </Card>
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Mensagem</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_message")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
@@ -614,7 +613,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
           <div className="mt-6 sm:mt-8">
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Testemunho</CardTitle>
+              <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_testimony")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
@@ -629,9 +628,9 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
         <section className="bg-muted/20">
           <div className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:py-20">
             <SectionTitle
-              kicker="Liderança"
-              title="Cuidamos de pessoas"
-              subtitle="Uma liderança próxima, acessível e comprometida com a saúde do lar."
+            kicker={t("couples_leadership_kicker")}
+            title={t("couples_leadership_title")}
+            subtitle={t("couples_leadership_subtitle")}
             />
 
             <div className="mt-6 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-[320px_1fr] md:items-center">
@@ -646,7 +645,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
 
               <Card className="shadow-none sm:shadow-elev">
                 <CardHeader>
-                  <CardTitle className="font-display uppercase tracking-[0.12em]">Casal líder</CardTitle>
+                  <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_leader_couple")}</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                   <p className="text-sm text-muted-foreground">
@@ -666,15 +665,15 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
         <section className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:py-20">
           <SectionTitle
             id="participar"
-            kicker="Como participar"
-            title="Inscreva-se e receba as próximas datas"
-            subtitle="Preencha seus dados e entraremos em contacto com as informações do próximo encontro."
+            kicker={t("couples_how_join_kicker")}
+            title={t("couples_how_join_title")}
+            subtitle={t("couples_how_join_subtitle")}
           />
 
           <div className="mt-6 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2">
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Passo a passo</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_steps")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <ol className="space-y-3 text-sm text-muted-foreground">
@@ -700,11 +699,11 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
 
                 <div className="mt-6 grid gap-3">
                   <Button asChild variant="secondary" size="lg">
-                    <a href="#agenda">Ver agenda</a>
+                    <a href="#agenda">{t("couples_view_agenda")}</a>
                   </Button>
                   <Button asChild variant="outline" size="lg">
                     <a href={MINISTERIO_SOCIALS.instagram} target="_blank" rel="noreferrer">
-                      Falar no Instagram
+                      {t("couples_talk_instagram")}
                     </a>
                   </Button>
                 </div>
@@ -713,12 +712,12 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
 
             <Card className="shadow-none sm:shadow-elev">
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Formulário</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_form")}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nome *</Label>
+                    <Label htmlFor="name">{t("couples_name")} *</Label>
                     <Input id="name" autoComplete="name" {...form.register("name")} />
                     {form.formState.errors.name ? (
                       <p className="text-sm text-destructive">{form.formState.errors.name.message}</p>
@@ -727,14 +726,14 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
 
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Telefone</Label>
+                      <Label htmlFor="phone">{t("couples_phone")}</Label>
                       <Input id="phone" autoComplete="tel" placeholder="+33..." {...form.register("phone")} />
                       {form.formState.errors.phone ? (
                         <p className="text-sm text-destructive">{form.formState.errors.phone.message}</p>
                       ) : null}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">E-mail</Label>
+                      <Label htmlFor="email">{t("couples_email")}</Label>
                       <Input id="email" type="email" autoComplete="email" {...form.register("email")} />
                       {form.formState.errors.email ? (
                         <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>
@@ -743,18 +742,18 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Mensagem</Label>
-                    <Textarea id="message" rows={4} placeholder="Como podemos orar por vocês?" {...form.register("message")} />
+                    <Label htmlFor="message">{t("couples_message_label")}</Label>
+                    <Textarea id="message" rows={4} placeholder={t("couples_message_placeholder")} {...form.register("message")} />
                     {form.formState.errors.message ? (
                       <p className="text-sm text-destructive">{form.formState.errors.message.message}</p>
                     ) : null}
                   </div>
 
                   <Button type="submit" variant="hero" size="lg" disabled={form.formState.isSubmitting}>
-                    Enviar inscrição
+                    {t("couples_submit")}
                   </Button>
                   <p className="text-xs text-muted-foreground">
-                    Ao enviar, você concorda em receber contacto da igreja apenas sobre atividades do ministério.
+                    {t("couples_privacy")}
                   </p>
                 </form>
               </CardContent>
@@ -765,12 +764,16 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
         {/* CONTATO */}
         <section className="bg-muted/20">
           <div className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:py-20">
-            <SectionTitle kicker="Contato" title="Fale com a igreja" subtitle="Se preferir, use os canais abaixo." />
+          <SectionTitle
+            kicker={t("couples_contact_kicker")}
+            title={t("couples_contact_title")}
+            subtitle={t("couples_contact_subtitle")}
+          />
 
             <div className="mt-6 grid gap-4 sm:mt-10 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <Card className="shadow-none sm:shadow-elev">
                 <CardHeader>
-                  <CardTitle className="font-display uppercase tracking-[0.12em]">Telefone</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_contact_phone")}</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <p className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -781,7 +784,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </Card>
               <Card className="shadow-none sm:shadow-elev">
                 <CardHeader>
-                  <CardTitle className="font-display uppercase tracking-[0.12em]">E-mail</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_contact_email")}</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <a
@@ -795,7 +798,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </Card>
               <Card className="shadow-none sm:shadow-elev">
                 <CardHeader>
-                  <CardTitle className="font-display uppercase tracking-[0.12em]">Redes</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_contact_social")}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2 pt-0">
                   <a className="block text-sm text-muted-foreground underline-offset-4 hover:underline" href={MINISTERIO_SOCIALS.instagram} target="_blank" rel="noreferrer">
@@ -808,7 +811,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </Card>
               <Card className="shadow-none sm:shadow-elev">
                 <CardHeader>
-                  <CardTitle className="font-display uppercase tracking-[0.12em]">Endereço</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">{t("couples_contact_address")}</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <a
