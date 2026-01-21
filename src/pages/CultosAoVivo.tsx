@@ -6,53 +6,54 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Play } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type VideoItem = {
   id: string;
   title: string;
-  category: string;
+  categoryKey: "cat_live" | "cat_sermons" | "cat_worship" | "cat_study_romans";
 };
 
 const VIDEOS: VideoItem[] = [
   // Cultos ao Vivo
-  { id: "XNEC_80MaPs", title: "CULTO DE SANTA CEIA E BATISMO", category: "Cultos ao Vivo" },
-  { id: "L_KuaxI3gQU", title: "CULTO INFANTIL", category: "Cultos ao Vivo" },
-  { id: "_hjwchFtLlU", title: "CULTO DA FAMILIA", category: "Cultos ao Vivo" },
-  { id: "brP4xR5QYoA", title: "CULTO DE MISSOES", category: "Cultos ao Vivo" },
-  { id: "W7SaeIuOLK8", title: "CULTO DA FAMILIA", category: "Cultos ao Vivo" },
-  { id: "aUbYJM8IzQQ", title: "CULTO DE SANTA CEIA", category: "Cultos ao Vivo" },
+  { id: "XNEC_80MaPs", title: "CULTO DE SANTA CEIA E BATISMO", categoryKey: "cat_live" },
+  { id: "L_KuaxI3gQU", title: "CULTO INFANTIL", categoryKey: "cat_live" },
+  { id: "_hjwchFtLlU", title: "CULTO DA FAMILIA", categoryKey: "cat_live" },
+  { id: "brP4xR5QYoA", title: "CULTO DE MISSOES", categoryKey: "cat_live" },
+  { id: "W7SaeIuOLK8", title: "CULTO DA FAMILIA", categoryKey: "cat_live" },
+  { id: "aUbYJM8IzQQ", title: "CULTO DE SANTA CEIA", categoryKey: "cat_live" },
 
   // Pregações
   {
     id: "77re98C5M4w",
     title: "Batismo, a identificação do Cristão com Cristo! Romanos 6:1-5",
-    category: "Pregações",
+    categoryKey: "cat_sermons",
   },
   {
     id: "RCvX4gbw-S0",
     title: "Entendendo o perdão para perdoar! Mateus 18:21-35",
-    category: "Pregações",
+    categoryKey: "cat_sermons",
   },
-  { id: "mUG8K1dOdKc", title: "O plano perfeito que muda vidas! Efésios 2:8", category: "Pregações" },
-  { id: "v4ya0lOhpzc", title: "Maldição Hereditária… Será Mesmo? Êxodo 20:5-6 // Ezequiel 18", category: "Pregações" },
-  { id: "Oa3VAsmGXTc", title: "Batalha Espiritual, como funciona? Efésios 6:10-18", category: "Pregações" },
-  { id: "F9rB4g0npbQ", title: "Se alguém não ama o Senhor, seja anátema. Maranata! 1 Coríntios 16:22", category: "Pregações" },
+  { id: "mUG8K1dOdKc", title: "O plano perfeito que muda vidas! Efésios 2:8", categoryKey: "cat_sermons" },
+  { id: "v4ya0lOhpzc", title: "Maldição Hereditária… Será Mesmo? Êxodo 20:5-6 // Ezequiel 18", categoryKey: "cat_sermons" },
+  { id: "Oa3VAsmGXTc", title: "Batalha Espiritual, como funciona? Efésios 6:10-18", categoryKey: "cat_sermons" },
+  { id: "F9rB4g0npbQ", title: "Se alguém não ama o Senhor, seja anátema. Maranata! 1 Coríntios 16:22", categoryKey: "cat_sermons" },
 
   // Louvor e Adoração
-  { id: "YpscpENRXG4", title: "Ministério de Louvor Pontault Combault 12/10/2025", category: "Louvor e Adoração" },
-  { id: "mt-Sr8zOGwo", title: "Ministério de Louvor Pontault Combault 5/10/2025", category: "Louvor e Adoração" },
-  { id: "EaNUkkV0ihQ", title: "Santo para sempre! Louvor e ministração", category: "Louvor e Adoração" },
-  { id: "ucLdUy7KwNM", title: "Tu és digno de tudo!", category: "Louvor e Adoração" },
-  { id: "8744B-OYl30", title: "Quem é esse!!", category: "Louvor e Adoração" },
-  { id: "FTn9qupoGck", title: "Glorioso dia", category: "Louvor e Adoração" },
+  { id: "YpscpENRXG4", title: "Ministério de Louvor Pontault Combault 12/10/2025", categoryKey: "cat_worship" },
+  { id: "mt-Sr8zOGwo", title: "Ministério de Louvor Pontault Combault 5/10/2025", categoryKey: "cat_worship" },
+  { id: "EaNUkkV0ihQ", title: "Santo para sempre! Louvor e ministração", categoryKey: "cat_worship" },
+  { id: "ucLdUy7KwNM", title: "Tu és digno de tudo!", categoryKey: "cat_worship" },
+  { id: "8744B-OYl30", title: "Quem é esse!!", categoryKey: "cat_worship" },
+  { id: "FTn9qupoGck", title: "Glorioso dia", categoryKey: "cat_worship" },
 
   // Estudos
-  { id: "JjIV4WGG9Xg", title: "Estudo da carta aos Romanos — cap. 6", category: "Estudo: Romanos" },
-  { id: "v82ER-RnHNA", title: "Estudo da carta aos Romanos — cap. 5", category: "Estudo: Romanos" },
-  { id: "bu37us09lBs", title: "Estudo da carta aos Romanos — cap. 4", category: "Estudo: Romanos" },
-  { id: "AqAyCkrq3Ik", title: "Estudo da carta aos Romanos — cap. 3", category: "Estudo: Romanos" },
-  { id: "x13b9SScRkE", title: "Estudo da carta aos Romanos — cap. 2", category: "Estudo: Romanos" },
-  { id: "uITUueQwN0E", title: "Estudo da carta aos Romanos — introdução e cap. 1", category: "Estudo: Romanos" },
+  { id: "JjIV4WGG9Xg", title: "Estudo da carta aos Romanos — cap. 6", categoryKey: "cat_study_romans" },
+  { id: "v82ER-RnHNA", title: "Estudo da carta aos Romanos — cap. 5", categoryKey: "cat_study_romans" },
+  { id: "bu37us09lBs", title: "Estudo da carta aos Romanos — cap. 4", categoryKey: "cat_study_romans" },
+  { id: "AqAyCkrq3Ik", title: "Estudo da carta aos Romanos — cap. 3", categoryKey: "cat_study_romans" },
+  { id: "x13b9SScRkE", title: "Estudo da carta aos Romanos — cap. 2", categoryKey: "cat_study_romans" },
+  { id: "uITUueQwN0E", title: "Estudo da carta aos Romanos — introdução e cap. 1", categoryKey: "cat_study_romans" },
 ];
 
 function getYoutubeThumb(id: string) {
@@ -61,11 +62,12 @@ function getYoutubeThumb(id: string) {
 
 export default function CultosAoVivo() {
   const [selected, setSelected] = useState<VideoItem | null>(null);
+  const { t } = useI18n();
 
   const categories = useMemo(() => {
-    const map = new Map<string, VideoItem[]>();
+    const map = new Map<VideoItem["categoryKey"], VideoItem[]>();
     for (const v of VIDEOS) {
-      map.set(v.category, [...(map.get(v.category) ?? []), v]);
+      map.set(v.categoryKey, [...(map.get(v.categoryKey) ?? []), v]);
     }
     return Array.from(map.entries());
   }, []);
@@ -78,7 +80,7 @@ export default function CultosAoVivo() {
 
       <main className="pt-[96px] md:pt-0">
         {/* HERO (Netflix-style) */}
-        <section aria-label="Destaque" className="relative overflow-hidden">
+        <section aria-label={t("live_title")} className="relative overflow-hidden">
           <div className="relative min-h-[540px] w-full md:min-h-[680px]">
             <img
               src={heroImage}
@@ -106,24 +108,24 @@ export default function CultosAoVivo() {
             <div className="relative z-10 container flex min-h-[540px] flex-col justify-end pb-14 md:min-h-[680px] md:pb-16">
               <div className="flex flex-wrap items-center gap-2 text-xs text-primary-foreground/80">
                 <span className="inline-flex items-center rounded-full border border-primary-foreground/20 bg-mel-overlay/45 px-3 py-1 backdrop-blur">
-                  Ao vivo & arquivos
+                  {t("live_kicker_live")}
                 </span>
                 <span className="inline-flex items-center rounded-full border border-primary-foreground/20 bg-mel-overlay/45 px-3 py-1 backdrop-blur">
-                  Pregações
+                  {t("live_kicker_sermons")}
                 </span>
                 <span className="inline-flex items-center rounded-full border border-primary-foreground/20 bg-mel-overlay/45 px-3 py-1 backdrop-blur">
-                  Louvor
+                  {t("live_kicker_worship")}
                 </span>
                 <span className="inline-flex items-center rounded-full border border-primary-foreground/20 bg-mel-overlay/45 px-3 py-1 backdrop-blur">
-                  Estudos
+                  {t("live_kicker_studies")}
                 </span>
               </div>
 
               <h1 className="mt-4 max-w-[820px] font-display text-[44px] font-semibold leading-[1.02] text-primary-foreground drop-shadow md:text-[72px]">
-                Cultos ao Vivo
+                {t("live_title")}
               </h1>
               <p className="mt-4 max-w-[720px] text-sm text-primary-foreground/90 md:text-base">
-                Assista aos cultos, pregações, louvores e estudos — tudo dentro do site.
+                {t("live_subtitle")}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -132,14 +134,14 @@ export default function CultosAoVivo() {
                   onClick={() => setSelected(hero)}
                   className="inline-flex h-12 items-center justify-center rounded-md bg-card/90 px-6 font-display text-[12px] font-semibold uppercase tracking-[0.35em] text-foreground shadow-elev ring-1 ring-border backdrop-blur transition-transform duration-200 hover:-translate-y-0.5"
                 >
-                  Assistir agora
+                  {t("watch_now")}
                 </button>
 
                 <a
                   href="#catalogo"
                   className="inline-flex h-12 items-center justify-center rounded-md border border-primary-foreground/35 bg-mel-overlay/25 px-6 font-display text-[12px] font-semibold uppercase tracking-[0.35em] text-primary-foreground backdrop-blur transition-colors hover:bg-primary-foreground/10"
                 >
-                  Ver categorias
+                  {t("see_categories")}
                 </a>
               </div>
             </div>
@@ -147,13 +149,15 @@ export default function CultosAoVivo() {
         </section>
 
         {/* FILEIRAS */}
-        <section id="catalogo" aria-label="Catálogo" className="bg-background">
+        <section id="catalogo" aria-label={t("catalog")} className="bg-background">
           <div className="container space-y-12 py-10 md:py-16">
-            {categories.map(([category, videos]) => (
-              <div key={category} className="space-y-4">
+            {categories.map(([categoryKey, videos]) => (
+              <div key={categoryKey} className="space-y-4">
                 <div className="flex items-baseline justify-between gap-4">
-                  <h2 className="font-display text-[18px] font-semibold text-foreground md:text-[20px]">{category}</h2>
-                  <span className="text-xs text-muted-foreground">{videos.length} vídeos</span>
+                  <h2 className="font-display text-[18px] font-semibold text-foreground md:text-[20px]">{t(categoryKey)}</h2>
+                  <span className="text-xs text-muted-foreground">
+                    {videos.length} {t("videos_count")}
+                  </span>
                 </div>
 
                 <Carousel opts={{ align: "start", dragFree: true }} className="relative">
@@ -218,7 +222,7 @@ export default function CultosAoVivo() {
                 </div>
                 <div className="p-5 md:p-6">
                   <h3 className="font-display text-[18px] font-semibold text-foreground md:text-[20px]">{selected.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{selected.category}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{t(selected.categoryKey)}</p>
                 </div>
               </div>
             ) : null}
