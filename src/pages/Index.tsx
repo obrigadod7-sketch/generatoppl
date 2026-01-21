@@ -64,7 +64,7 @@ const Index = () => {
            <img
              src={heroBanner}
              alt="Banner da Missão Evangélica Lusitana"
-              className="absolute inset-0 h-full w-full object-contain object-center saturate-75 contrast-95 brightness-105 grayscale-[10%] lg:object-cover"
+              className="absolute inset-0 h-full w-full object-contain object-center saturate-75 contrast-95 brightness-105 grayscale-[10%] md:object-cover lg:object-cover"
              loading="eager"
              decoding="async"
              fetchPriority="high"
@@ -88,13 +88,13 @@ const Index = () => {
         {/* Bloco (desktop) - Estudo bíblico + Oração (como Elementor) */}
         <section aria-label={t("home_study_desktop_aria")} className="hidden bg-mel-blue800 md:block">
           <div className="mx-auto w-full max-w-[1155px] px-6 py-4">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 items-stretch gap-6">
               {/* Estudo */}
-              <div className="flex flex-col items-center text-center">
+              <div className="flex h-full flex-col items-center text-center">
                 <h2 className="font-display text-[22px] font-semibold uppercase leading-tight text-primary-foreground">
                   {renderMultiline(t("home_participe_estudo"))}
                 </h2>
-                <div className="mt-4 flex justify-center">
+                <div className="mt-auto flex justify-center pt-4">
                   <a
                     className="inline-flex h-12 w-full max-w-[420px] items-center justify-center bg-mel-blue700 px-6 font-display text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-foreground"
                     href="https://missionevangeliquelusitana.com/reunioes-pelo-zoom/"
@@ -105,11 +105,11 @@ const Index = () => {
               </div>
 
               {/* Oração */}
-              <div className="flex flex-col items-center text-center">
+              <div className="flex h-full flex-col items-center text-center">
                 <h2 className="font-display text-[22px] font-semibold uppercase leading-tight text-primary-foreground">
                   {renderMultiline(t("home_peca_oracao"))}
                 </h2>
-                <div className="mt-4 flex justify-center">
+                <div className="mt-auto flex justify-center pt-4">
                   <a
                     className="inline-flex h-12 w-full max-w-[420px] items-center justify-center bg-mel-blue700 px-6 font-display text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-foreground"
                     href="https://missionevangeliquelusitana.com/pedidos-de-oracao/"
