@@ -78,7 +78,7 @@ export default function CultosAoVivo() {
     <div className="min-h-screen bg-background text-foreground">
       <ElementorHeader />
 
-      <main className="pt-[96px] md:pt-0">
+      <main>
         {/* HERO (Netflix-style) */}
         <section aria-label={t("live_title")} className="relative overflow-hidden">
           <div className="relative min-h-[540px] w-full md:min-h-[680px]">

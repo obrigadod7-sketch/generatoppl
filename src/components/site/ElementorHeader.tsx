@@ -57,7 +57,7 @@ export function ElementorHeader() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-mel-blue700/90 py-6 backdrop-blur-sm md:absolute md:bg-transparent md:py-0">
+    <header className="sticky top-0 z-50 bg-mel-blue700/90 py-4 backdrop-blur-sm md:py-3">
       <div className="mx-auto w-full max-w-[1600px] px-6">
         {/* Mobile: barra azul + hamburger central */}
         <div className="flex items-center justify-center md:hidden">

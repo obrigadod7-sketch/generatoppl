@@ -81,7 +81,7 @@ export default function MinisterioDetalhe() {
     return (
       <div className="min-h-screen bg-background text-foreground">
         <ElementorHeader />
-        <main className="pt-24 md:pt-28">
+        <main>
           <section className="mx-auto w-full max-w-[1100px] px-6">
             <h1 className="font-display text-2xl uppercase tracking-[0.14em]">Ministério não encontrado</h1>
             <p className="mt-2 text-muted-foreground">Verifique o link e tente novamente.</p>
@@ -101,7 +101,7 @@ export default function MinisterioDetalhe() {
     <div className="min-h-screen bg-background text-foreground">
       <ElementorHeader />
 
-      <main className="pt-24 md:pt-28">
+      <main>
         <section className={"relative " + (isCasais ? "min-h-[360px] md:min-h-[440px]" : "")}>
           <div className="absolute inset-0">
             <img

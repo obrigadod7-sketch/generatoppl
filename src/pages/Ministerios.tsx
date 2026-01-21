@@ -13,7 +13,7 @@ export default function Ministerios() {
     <div className="min-h-screen bg-background text-foreground">
       <ElementorHeader />
 
-      <main className="pt-24 md:pt-28">
+      <main>
         <section className="mx-auto w-full max-w-[1200px] px-6">
           <div className="flex flex-col items-start gap-4">
             <Badge variant="secondary">Conheça</Badge>

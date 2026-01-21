@@ -13,7 +13,7 @@ export default function Cantina() {
     <div className="min-h-screen bg-background text-foreground">
       <ElementorHeader />
 
-      <main className="pt-[96px] md:pt-0">
+      <main>
         {/* HERO */}
         <header className="relative overflow-hidden">
           <div className="relative min-h-[420px] w-full md:min-h-[520px]">

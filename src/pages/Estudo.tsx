@@ -12,7 +12,7 @@ export default function Estudo() {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <ElementorHeader />
 
-      <main className="flex-1 pt-[96px] md:pt-0">
+      <main className="flex-1">
         <section aria-label="Hero do estudo" className="relative min-h-[360px] w-full overflow-hidden md:min-h-[520px]">
           <img
             src={heroImage}
