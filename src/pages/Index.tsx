@@ -51,7 +51,7 @@ const Index = () => {
            <img
              src={heroBanner}
              alt="Banner da Missão Evangélica Lusitana"
-             className="absolute inset-0 h-full w-full object-cover object-center saturate-75 contrast-95 brightness-105 grayscale-[10%]"
+             className="absolute inset-0 h-full w-full bg-mel-banner3 object-contain object-center saturate-75 contrast-95 brightness-105 grayscale-[10%] lg:object-cover"
              loading="eager"
              decoding="async"
              fetchPriority="high"
