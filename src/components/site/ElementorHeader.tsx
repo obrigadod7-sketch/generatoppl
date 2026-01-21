@@ -127,22 +127,22 @@ export function ElementorHeader() {
           </div>
 
           {/* Menu (direita) */}
-          <div className="grid grid-cols-[1fr_auto] items-center gap-3">
-            <nav className="w-[96.963%] justify-center md:flex" aria-label="Menu">
-              <ul className="flex items-center justify-center">
+           <div className="grid grid-cols-[1fr_auto] items-center gap-3">
+            <nav className="min-w-0 justify-center md:flex" aria-label="Menu">
+              <ul className="flex flex-wrap items-center justify-center gap-y-2">
                 {nav.map((item, idx) => (
                   <li key={item.href} className="relative px-[6px]">
                     {item.href.startsWith("/") ? (
                       <Link
                         to={item.href}
-                        className="inline-flex items-center font-display text-[15px] font-normal uppercase tracking-[0.28em] text-primary-foreground hover:text-primary-foreground/80"
+                        className="inline-flex items-center font-display text-[13px] font-normal uppercase tracking-[0.22em] text-primary-foreground hover:text-primary-foreground/80 2xl:text-[15px] 2xl:tracking-[0.28em]"
                       >
                         {item.label}
                       </Link>
                     ) : (
                       <a
                         href={item.href}
-                        className="inline-flex items-center font-display text-[15px] font-normal uppercase tracking-[0.28em] text-primary-foreground hover:text-primary-foreground/80"
+                        className="inline-flex items-center font-display text-[13px] font-normal uppercase tracking-[0.22em] text-primary-foreground hover:text-primary-foreground/80 2xl:text-[15px] 2xl:tracking-[0.28em]"
                       >
                         {item.label}
                       </a>
@@ -152,7 +152,7 @@ export function ElementorHeader() {
                     {idx !== nav.length - 1 && (
                       <span
                         aria-hidden
-                        className="absolute right-[-1px] top-1/2 h-[30px] w-[2px] -translate-y-1/2 border-l-2 border-double border-mel-divider"
+                        className="absolute right-[-1px] top-1/2 hidden h-[30px] w-[2px] -translate-y-1/2 border-l-2 border-double border-mel-divider xl:block"
                       />
                     )}
                   </li>

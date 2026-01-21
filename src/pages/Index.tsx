@@ -91,12 +91,12 @@ const Index = () => {
             <div className="grid grid-cols-2 gap-6">
               {/* Estudo */}
               <div className="flex flex-col items-center text-center">
-                <h2 className="font-display text-[26px] font-semibold uppercase leading-tight text-primary-foreground">
+                <h2 className="font-display text-[22px] font-semibold uppercase leading-tight text-primary-foreground">
                   {renderMultiline(t("home_participe_estudo"))}
                 </h2>
                 <div className="mt-4 flex justify-center">
                   <a
-                    className="inline-flex h-12 w-full max-w-[420px] items-center justify-center bg-mel-blue700 px-6 font-display text-[12px] font-semibold uppercase tracking-[0.35em] text-primary-foreground"
+                    className="inline-flex h-12 w-full max-w-[420px] items-center justify-center bg-mel-blue700 px-6 font-display text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-foreground"
                     href="https://missionevangeliquelusitana.com/reunioes-pelo-zoom/"
                   >
                     {t("home_estudo_btn")}
@@ -106,12 +106,12 @@ const Index = () => {
 
               {/* Oração */}
               <div className="flex flex-col items-center text-center">
-                <h2 className="font-display text-[26px] font-semibold uppercase leading-tight text-primary-foreground">
+                <h2 className="font-display text-[22px] font-semibold uppercase leading-tight text-primary-foreground">
                   {renderMultiline(t("home_peca_oracao"))}
                 </h2>
                 <div className="mt-4 flex justify-center">
                   <a
-                    className="inline-flex h-12 w-full max-w-[420px] items-center justify-center bg-mel-blue700 px-6 font-display text-[12px] font-semibold uppercase tracking-[0.35em] text-primary-foreground"
+                    className="inline-flex h-12 w-full max-w-[420px] items-center justify-center bg-mel-blue700 px-6 font-display text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-foreground"
                     href="https://missionevangeliquelusitana.com/pedidos-de-oracao/"
                   >
                     {t("home_peca_oracao_btn")}
@@ -132,12 +132,12 @@ const Index = () => {
           
           <div className="relative">
              <div className="bg-gradient-to-b from-mel-blue600 to-mel-blue800 px-[20px] py-[24px]">
-              <h2 className="animate-fade-in text-center font-display text-[25px] font-semibold uppercase leading-tight text-primary-foreground">
+              <h2 className="animate-fade-in text-center font-display text-[22px] font-semibold uppercase leading-tight text-primary-foreground">
                 {renderMultiline(t("home_participe_estudo"))}
               </h2>
               <div className="mt-6 flex justify-center">
                 <a
-                  className="inline-flex h-12 w-full items-center justify-center bg-mel-blue700 px-6 font-display text-[12px] font-semibold uppercase tracking-[0.35em] text-primary-foreground"
+                  className="inline-flex h-12 w-full items-center justify-center bg-mel-blue700 px-6 font-display text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-foreground"
                   href="https://missionevangeliquelusitana.com/reunioes-pelo-zoom/"
                 >
                   {t("home_estudo_btn")}
