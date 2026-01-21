@@ -167,13 +167,13 @@ const Index = () => {
               <PhotoOverlay />
 
               {/* CONTEÚDO */}
-               <div className="relative z-30 flex min-h-[260px] flex-col items-center justify-center gap-5 px-8 text-center md:min-h-[320px] md:px-10">
-                <h2 className="font-display text-[28px] font-semibold uppercase tracking-[0.12em] text-mel-ice drop-shadow-md animate-fade-in">
+               <div className="relative z-30 flex min-h-[220px] flex-col items-center justify-center gap-4 px-6 text-center sm:min-h-[240px] md:min-h-[280px] md:px-8">
+                <h2 className="font-display text-[24px] font-semibold uppercase tracking-[0.11em] text-mel-ice drop-shadow-md animate-fade-in md:text-[26px]">
                   <a href="/cultos-ao-vivo">{t("home_cultos")}</a>
                 </h2>
 
                 <a
-                  className="inline-flex h-11 min-w-[200px] items-center justify-center rounded-md bg-card/75 px-8 font-display text-[10px] font-semibold uppercase tracking-[0.36em] text-foreground shadow-elev ring-1 ring-border backdrop-blur-md"
+                  className="inline-flex h-10 min-w-[180px] items-center justify-center rounded-md bg-card/75 px-7 font-display text-[10px] font-semibold uppercase tracking-[0.32em] text-foreground shadow-elev ring-1 ring-border backdrop-blur-md"
                   href="/cultos-ao-vivo"
                 >
                   {t("home_informacoes")}
@@ -203,13 +203,13 @@ const Index = () => {
               <PhotoOverlay />
 
               {/* CONTEÚDO */}
-               <div className="relative z-30 flex min-h-[260px] flex-col items-center justify-center gap-5 px-8 text-center md:min-h-[320px] md:px-10">
-                <h2 className="font-display text-[28px] font-semibold uppercase tracking-[0.12em] text-mel-ice drop-shadow-md animate-fade-in">
+               <div className="relative z-30 flex min-h-[220px] flex-col items-center justify-center gap-4 px-6 text-center sm:min-h-[240px] md:min-h-[280px] md:px-8">
+                <h2 className="font-display text-[24px] font-semibold uppercase tracking-[0.11em] text-mel-ice drop-shadow-md animate-fade-in md:text-[26px]">
                   <a href="https://missionevangeliquelusitana.com/celular-nas-casas/">{t("home_celulas")}</a>
                 </h2>
 
                 <a
-                  className="inline-flex h-11 min-w-[200px] items-center justify-center rounded-md bg-card/75 px-8 font-display text-[10px] font-semibold uppercase tracking-[0.36em] text-foreground shadow-elev ring-1 ring-border backdrop-blur-md"
+                  className="inline-flex h-10 min-w-[180px] items-center justify-center rounded-md bg-card/75 px-7 font-display text-[10px] font-semibold uppercase tracking-[0.32em] text-foreground shadow-elev ring-1 ring-border backdrop-blur-md"
                   href="https://missionevangeliquelusitana.com/celular-nas-casas/"
                 >
                   {t("home_informacoes")}
