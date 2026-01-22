@@ -14,6 +14,196 @@ export type Database = {
   }
   public: {
     Tables: {
+      checkins: {
+        Row: {
+          checked_in_at: string
+          checked_out_at: string | null
+          checkout_code_hash: string | null
+          checkout_guardian_id: string | null
+          child_id: string
+          church_id: string | null
+          created_at: string
+          event_id: string | null
+          id: string
+          notes: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          checked_in_at?: string
+          checked_out_at?: string | null
+          checkout_code_hash?: string | null
+          checkout_guardian_id?: string | null
+          child_id: string
+          church_id?: string | null
+          created_at?: string
+          event_id?: string | null
+          id?: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          checked_in_at?: string
+          checked_out_at?: string | null
+          checkout_code_hash?: string | null
+          checkout_guardian_id?: string | null
+          child_id?: string
+          church_id?: string | null
+          created_at?: string
+          event_id?: string | null
+          id?: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "checkins_checkout_guardian_id_fkey"
+            columns: ["checkout_guardian_id"]
+            isOneToOne: false
+            referencedRelation: "guardians"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "checkins_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "checkins_church_id_fkey"
+            columns: ["church_id"]
+            isOneToOne: false
+            referencedRelation: "churches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "checkins_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      child_guardians: {
+        Row: {
+          child_id: string
+          created_at: string
+          guardian_id: string
+          id: string
+          is_pickup_authorized: boolean
+          relationship: string | null
+        }
+        Insert: {
+          child_id: string
+          created_at?: string
+          guardian_id: string
+          id?: string
+          is_pickup_authorized?: boolean
+          relationship?: string | null
+        }
+        Update: {
+          child_id?: string
+          created_at?: string
+          guardian_id?: string
+          id?: string
+          is_pickup_authorized?: boolean
+          relationship?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "child_guardians_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "child_guardians_guardian_id_fkey"
+            columns: ["guardian_id"]
+            isOneToOne: false
+            referencedRelation: "guardians"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      children: {
+        Row: {
+          active: boolean
+          allergies: string | null
+          birth_date: string | null
+          church_id: string | null
+          created_at: string
+          first_name: string
+          id: string
+          last_name: string | null
+          notes: string | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          allergies?: string | null
+          birth_date?: string | null
+          church_id?: string | null
+          created_at?: string
+          first_name: string
+          id?: string
+          last_name?: string | null
+          notes?: string | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          allergies?: string | null
+          birth_date?: string | null
+          church_id?: string | null
+          created_at?: string
+          first_name?: string
+          id?: string
+          last_name?: string | null
+          notes?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "children_church_id_fkey"
+            columns: ["church_id"]
+            isOneToOne: false
+            referencedRelation: "churches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      churches: {
+        Row: {
+          address: string | null
+          created_at: string
+          id: string
+          name: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       couple_ministry_signups: {
         Row: {
           created_at: string
@@ -43,6 +233,94 @@ export type Database = {
           source_slug?: string
         }
         Relationships: []
+      }
+      events: {
+        Row: {
+          active: boolean
+          church_id: string | null
+          created_at: string
+          ends_at: string | null
+          id: string
+          location: string | null
+          notes: string | null
+          starts_at: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          church_id?: string | null
+          created_at?: string
+          ends_at?: string | null
+          id?: string
+          location?: string | null
+          notes?: string | null
+          starts_at?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          church_id?: string | null
+          created_at?: string
+          ends_at?: string | null
+          id?: string
+          location?: string | null
+          notes?: string | null
+          starts_at?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "events_church_id_fkey"
+            columns: ["church_id"]
+            isOneToOne: false
+            referencedRelation: "churches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      guardians: {
+        Row: {
+          church_id: string | null
+          created_at: string
+          email: string | null
+          full_name: string
+          id: string
+          notes: string | null
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          church_id?: string | null
+          created_at?: string
+          email?: string | null
+          full_name: string
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          church_id?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "guardians_church_id_fkey"
+            columns: ["church_id"]
+            isOneToOne: false
+            referencedRelation: "churches"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       kids_ministry_signups: {
         Row: {
@@ -79,6 +357,91 @@ export type Database = {
           source_slug?: string
         }
         Relationships: []
+      }
+      leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          source?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          source?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          channel: string
+          child_id: string | null
+          church_id: string | null
+          content: string
+          created_at: string
+          guardian_id: string | null
+          id: string
+          sender_user_id: string | null
+        }
+        Insert: {
+          channel?: string
+          child_id?: string | null
+          church_id?: string | null
+          content: string
+          created_at?: string
+          guardian_id?: string | null
+          id?: string
+          sender_user_id?: string | null
+        }
+        Update: {
+          channel?: string
+          child_id?: string | null
+          church_id?: string | null
+          content?: string
+          created_at?: string
+          guardian_id?: string | null
+          id?: string
+          sender_user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_church_id_fkey"
+            columns: ["church_id"]
+            isOneToOne: false
+            referencedRelation: "churches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_guardian_id_fkey"
+            columns: ["guardian_id"]
+            isOneToOne: false
+            referencedRelation: "guardians"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       ministries: {
         Row: {
@@ -136,6 +499,41 @@ export type Database = {
           },
         ]
       }
+      profiles: {
+        Row: {
+          church_id: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          church_id?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          church_id?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_church_id_fkey"
+            columns: ["church_id"]
+            isOneToOne: false
+            referencedRelation: "churches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -162,6 +560,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      current_church_id: { Args: never; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -171,7 +570,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "user"
+      app_role: "admin" | "user" | "leader" | "volunteer"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -299,7 +698,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "user"],
+      app_role: ["admin", "user", "leader", "volunteer"],
     },
   },
 } as const
