@@ -21,6 +21,21 @@ export default function AdminSetup() {
   const [showRecoveryEmail, setShowRecoveryEmail] = useState(false);
   const navigate = useNavigate();
 
+  // IMPORTANT: Links sent by email must point to a public URL.
+  // The *.lovableproject.com domain can require a platform login screen,
+  // which breaks the recovery token flow.
+  const getResetPasswordRedirectTo = () => {
+    const host = window.location.hostname;
+    const path = "/reset-password";
+
+    if (host.endsWith("lovableproject.com")) {
+      // Use the published URL for this project.
+      return `https://generatoppl.lovable.app${path}`;
+    }
+
+    return `${window.location.origin}${path}`;
+  };
+
   const getBackendErrorCode = (err: unknown) => {
     // 1) Prefer structured body if available
     const raw = (err as any)?.context?.body;
@@ -87,7 +102,7 @@ export default function AdminSetup() {
                 setShowRecoveryEmail(false);
 
                 try {
-                  const redirectTo = `${window.location.origin}/reset-password`;
+                  const redirectTo = getResetPasswordRedirectTo();
                   const { data, error } = await supabase.functions.invoke("bootstrap-admin", {
                     body: { email: values.email, redirectTo },
                   });
@@ -176,7 +191,7 @@ export default function AdminSetup() {
                         toast({ title: "Informe o email", variant: "destructive" });
                         return;
                       }
-                      const redirectTo = `${window.location.origin}/reset-password`;
+                      const redirectTo = getResetPasswordRedirectTo();
                       const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
                       if (error) {
                         toast({ title: "Falha ao enviar email", description: error.message, variant: "destructive" });
