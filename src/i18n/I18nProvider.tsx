@@ -5,7 +5,8 @@ import { translations } from "@/i18n/translations";
 type I18nContextValue = {
   locale: Locale;
   setLocale: (next: Locale) => void;
-  t: (key: TranslationKey) => string;
+  // Accept string keys to avoid type breakage when translations evolve.
+  t: (key: TranslationKey | string) => string;
 };
 
 const I18nContext = createContext<I18nContextValue | null>(null);
@@ -35,7 +36,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const t = useCallback(
-    (key: TranslationKey) => {
+    (key: TranslationKey | string) => {
       const current = translations[locale] as Record<string, string>;
       const fallback = translations.pt as Record<string, string>;
       return current[key] ?? fallback[key] ?? key;

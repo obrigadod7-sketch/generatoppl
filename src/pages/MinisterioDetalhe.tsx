@@ -20,6 +20,7 @@ import { useIsAdmin } from "@/hooks/use-is-admin";
 import { getMinisterioBySlug, MINISTERIO_SOCIALS } from "@/shared/ministerios";
 import CasaisMinisterio from "@/pages/CasaisMinisterio";
 import { useI18n } from "@/i18n/I18nProvider";
+import { KidsSignupForm } from "@/components/site/KidsSignupForm";
 
 function BulletList({ items }: { items?: string[] }) {
   if (!items?.length) return null;
@@ -295,6 +296,18 @@ export default function MinisterioDetalhe() {
                 </CardContent>
               </Card>
             )}
+
+            {isInfantil ? (
+              <Card className="md:col-span-2">
+                <CardHeader>
+                  <CardTitle className="font-display uppercase tracking-[0.12em]">{t("kids_signup_title")}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="mb-4 text-sm text-muted-foreground">{t("kids_signup_subtitle")}</p>
+                  <KidsSignupForm />
+                </CardContent>
+              </Card>
+            ) : null}
           </div>
 
           {ministerio.versiculo && (
