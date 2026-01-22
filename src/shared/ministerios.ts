@@ -194,6 +194,16 @@ export const MINISTERIOS: Ministerio[] = [
     imagem: bgCelulas,
   },
   {
+    slug: "ministerio-infantil",
+    titulo: "Ministério Infantil",
+    subtitulo: "Cuidando das crianças com amor, ensino e segurança",
+    resumo: "Cuidando das crianças com amor, ensino e segurança.",
+    descricao:
+      "Um ministério dedicado a receber crianças e famílias com acolhimento, discipulado e responsabilidade, apoiando os pais na formação cristã.",
+    // Conteúdo completo (PT/EN/FR) é exibido via i18n na página de detalhe.
+    imagem: bgHero,
+  },
+  {
     slug: "tesouraria",
     titulo: "Tesouraria",
     subtitulo: "Transparência e organização financeira",
