@@ -22,14 +22,35 @@ export default function AdminSetup() {
   const navigate = useNavigate();
 
   const getBackendErrorCode = (err: unknown) => {
+    // 1) Prefer structured body if available
     const raw = (err as any)?.context?.body;
-    if (!raw) return "";
-    try {
-      const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
-      return String(parsed?.error || "");
-    } catch {
-      return "";
+    if (raw) {
+      try {
+        const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
+        const code = String(parsed?.error || "");
+        if (code) return code;
+      } catch {
+        // fallthrough
+      }
     }
+
+    // 2) Fallback: parse from error message (common for FunctionsHttpError)
+    const msg = String((err as any)?.message || "");
+    if (msg.includes("admin_already_configured")) return "admin_already_configured";
+
+    // Try to extract JSON object from the message
+    const match = msg.match(/\{[\s\S]*\}/);
+    if (match?.[0]) {
+      try {
+        const parsed = JSON.parse(match[0]);
+        const code = String(parsed?.error || "");
+        if (code) return code;
+      } catch {
+        // ignore
+      }
+    }
+
+    return "";
   };
 
   const schema = useMemo(
