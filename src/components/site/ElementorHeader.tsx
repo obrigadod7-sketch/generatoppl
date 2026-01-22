@@ -19,6 +19,7 @@ export function ElementorHeader() {
     { href: "/missoes", label: t("nav_missoes") },
     { href: "/ministerios", label: t("nav_ministerios") },
     { href: "/ministerios/ministerio-infantil", label: t("nav_infantil") },
+    { href: "/kids/dashboard", label: t("nav_dashboard_kids") },
     { href: "/cantina", label: t("nav_cantina") },
     { href: "#celulas", label: t("nav_celulas") },
     { href: "#pastoral", label: t("nav_familia_pastoral") },
