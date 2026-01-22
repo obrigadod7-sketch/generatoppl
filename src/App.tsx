@@ -14,6 +14,7 @@ import Missoes from "./pages/Missoes";
 import NotFound from "./pages/NotFound";
 import KidsPlatform from "./pages/KidsPlatform";
 import Login from "./pages/auth/Login";
+import AdminSetup from "./pages/auth/AdminSetup";
 import KidsDashboardLayout from "./pages/kids/KidsDashboardLayout";
 import KidsDashboardHome from "./pages/kids/KidsDashboardHome";
 import KidsChildrenPage from "./pages/kids/KidsChildrenPage";
@@ -43,6 +44,7 @@ const App = () => (
               {/* Kids platform */}
               <Route path="/kids" element={<KidsPlatform />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/setup-admin" element={<AdminSetup />} />
               <Route
                 path="/kids/dashboard"
                 element={
