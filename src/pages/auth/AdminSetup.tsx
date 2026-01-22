@@ -53,8 +53,9 @@ export default function AdminSetup() {
                 setRecoveryLink(null);
 
                 try {
+                  const redirectTo = `${window.location.origin}/reset-password`;
                   const { data, error } = await supabase.functions.invoke("bootstrap-admin", {
-                    body: { email: values.email },
+                    body: { email: values.email, redirectTo },
                   });
                   if (error) throw error;
                   if (!data?.success) throw new Error(data?.error || "Falha ao criar admin");
