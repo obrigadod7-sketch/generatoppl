@@ -10,6 +10,7 @@ import CultosAoVivo from "./pages/CultosAoVivo";
 import Cantina from "./pages/Cantina";
 import Ministerios from "./pages/Ministerios";
 import MinisterioDetalhe from "./pages/MinisterioDetalhe";
+import Missoes from "./pages/Missoes";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
               <Route path="/estudo" element={<Estudo />} />
               <Route path="/cultos-ao-vivo" element={<CultosAoVivo />} />
               <Route path="/cantina" element={<Cantina />} />
+              <Route path="/missoes" element={<Missoes />} />
               <Route path="/ministerios" element={<Ministerios />} />
               <Route path="/ministerios/:slug" element={<MinisterioDetalhe />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
