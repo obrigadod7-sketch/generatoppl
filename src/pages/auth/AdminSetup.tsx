@@ -104,7 +104,15 @@ export default function AdminSetup() {
                       });
                       return;
                     }
-                    throw error;
+
+                    // Never throw here; just show a friendly message so the page doesn't crash.
+                    toast({
+                      title: "Não foi possível configurar",
+                      description:
+                        "Não foi possível criar o admin agora. Tente novamente ou use a recuperação de senha.",
+                      variant: "destructive",
+                    });
+                    return;
                   }
 
                   if (!data?.success) {
