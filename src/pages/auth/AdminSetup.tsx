@@ -18,6 +18,7 @@ type Values = { email: string };
 export default function AdminSetup() {
   const [submitting, setSubmitting] = useState(false);
   const [recoveryLink, setRecoveryLink] = useState<string | null>(null);
+  const [showRecoveryEmail, setShowRecoveryEmail] = useState(false);
   const navigate = useNavigate();
 
   const schema = useMemo(
@@ -51,6 +52,7 @@ export default function AdminSetup() {
               onSubmit={form.handleSubmit(async (values) => {
                 setSubmitting(true);
                 setRecoveryLink(null);
+                setShowRecoveryEmail(false);
 
                 try {
                   const redirectTo = `${window.location.origin}/reset-password`;
@@ -63,6 +65,16 @@ export default function AdminSetup() {
                   setRecoveryLink(data.recoveryLink || null);
                   toast({ title: "Admin criado!" });
                 } catch (e: any) {
+                  const msg = String(e?.message ?? "");
+                  // If an admin already exists, guide user to password recovery instead of blocking.
+                  if (msg.includes("admin_already_configured")) {
+                    setShowRecoveryEmail(true);
+                    toast({
+                      title: "Admin já configurado",
+                      description: "Envie um link de recuperação para definir/alterar a senha desse email.",
+                    });
+                    return;
+                  }
                   toast({
                     title: "Não foi possível configurar",
                     description: e?.message ?? "Tente novamente.",
@@ -84,6 +96,35 @@ export default function AdminSetup() {
               <Button type="submit" disabled={submitting}>
                 {submitting ? "Criando..." : "Criar admin"}
               </Button>
+
+              {showRecoveryEmail ? (
+                <div className="grid gap-2 rounded-md border border-border bg-card p-4">
+                  <p className="text-sm">
+                    Já existe um admin. Clique abaixo para receber um link de recuperação e definir sua senha.
+                  </p>
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={async () => {
+                      const email = String(form.getValues("email") || "").trim();
+                      if (!email) {
+                        toast({ title: "Informe o email", variant: "destructive" });
+                        return;
+                      }
+                      const redirectTo = `${window.location.origin}/reset-password`;
+                      const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+                      if (error) {
+                        toast({ title: "Falha ao enviar email", description: error.message, variant: "destructive" });
+                        return;
+                      }
+                      toast({ title: "Email enviado", description: "Verifique sua caixa de entrada e spam." });
+                    }}
+                  >
+                    Enviar link de recuperação
+                  </Button>
+                  <Button type="button" onClick={() => navigate("/login")}>Ir para login</Button>
+                </div>
+              ) : null}
 
               {recoveryLink ? (
                 <div className="grid gap-2 rounded-md border border-border bg-card p-4">
