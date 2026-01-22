@@ -13,6 +13,7 @@ export const translations = {
     // Header / Nav
     nav_estudo: "Estudo",
     nav_cultos: "Cultos",
+    nav_missoes: "Missões",
     nav_ministerios: "Ministérios",
     nav_cantina: "Cantina",
     nav_celulas: "Células",
@@ -37,6 +38,47 @@ export const translations = {
     home_celulas: "CÉLULAS NAS CASAS",
     home_informacoes: "INFORMAÇÕES",
     home_familia_pastoral: "Família pastoral.",
+
+    // Missions
+    missions_kicker: "Serviço • Compaixão • Evangelho",
+    missions_title: "Missões",
+    missions_subtitle:
+      "Missões é levar a Boa Nova com palavras e ações: discipular, servir e cuidar de pessoas. Aqui você encontra o que nos move e como contribuir.",
+    missions_badge_local: "Ação local",
+    missions_badge_global: "Visão global",
+    missions_badge_compassion: "Compaixão",
+    missions_cta_contribute: "Quero contribuir",
+    missions_cta_cantina: "Apoiar pela Cantina",
+    missions_disclaimer:
+      "Observação: esta página apresenta princípios e direcionamentos gerais de missão; detalhes de projetos e campanhas podem variar ao longo do ano.",
+    missions_section_aria: "Conteúdo sobre missões",
+    missions_why_title: "Por que missões",
+    missions_why_text:
+      "Porque o amor de Deus nos envia. Missões é testemunhar Cristo no dia a dia, acolher quem precisa e formar discípulos com fidelidade às Escrituras.",
+    missions_mission_title: "Nossa missão",
+    missions_mission_text:
+      "Ser uma comunidade que anuncia o Evangelho e serve com humildade — com foco em pessoas, famílias e reconciliação, começando onde estamos e alcançando além.",
+    missions_values_title: "Valores",
+    missions_value_1: "Bíblia como base e direção para a vida cristã.",
+    missions_value_2: "Oração, adoração e comunhão como ritmo de comunidade.",
+    missions_value_3: "Acolhimento: todos são recebidos com dignidade e cuidado.",
+    missions_value_4: "Serviço prático: ajudar com ações reais e consistentes.",
+    missions_value_5: "Unidade e cooperação com outras igrejas e projetos cristãos.",
+    missions_contribute_aria: "Como contribuir com missões",
+    missions_contribute_title: "Como contribuir",
+    missions_contribute_text:
+      "Você pode apoiar missões de formas simples e constantes — com tempo, recursos e disponibilidade. Fale com a igreja para saber as necessidades atuais.",
+    missions_contribute_way_1_title: "Presença e serviço",
+    missions_contribute_way_1_text:
+      "Seja voluntário(a) em ações de acolhimento, apoio a famílias e organização de eventos.",
+    missions_contribute_way_2_title: "Contribuição",
+    missions_contribute_way_2_text:
+      "Contribua com ofertas, alimentos ou itens para campanhas — conforme orientações da liderança.",
+    missions_contribute_way_3_title: "Intercessão",
+    missions_contribute_way_3_text:
+      "Ore pelos missionários, famílias atendidas, e pelos próximos passos da igreja na França.",
+    missions_cta_talk: "Falar com a igreja",
+    missions_cta_see_cantina: "Ver a Cantina",
 
     // Ministries
     ministries_badge: "Conheça",
@@ -182,6 +224,7 @@ export const translations = {
   en: {
     nav_estudo: "Study",
     nav_cultos: "Services",
+    nav_missoes: "Missions",
     nav_ministerios: "Ministries",
     nav_cantina: "Cafeteria",
     nav_celulas: "Home Groups",
@@ -205,6 +248,47 @@ export const translations = {
     home_celulas: "HOME GROUPS",
     home_informacoes: "INFO",
     home_familia_pastoral: "Pastoral family.",
+
+    // Missions
+    missions_kicker: "Service • Compassion • Gospel",
+    missions_title: "Missions",
+    missions_subtitle:
+      "Missions is sharing the Good News through words and actions: discipling, serving, and caring for people. Here you can learn what drives us and how to contribute.",
+    missions_badge_local: "Local action",
+    missions_badge_global: "Global vision",
+    missions_badge_compassion: "Compassion",
+    missions_cta_contribute: "I want to contribute",
+    missions_cta_cantina: "Support via Cafeteria",
+    missions_disclaimer:
+      "Note: this page presents general mission principles; project and campaign details may change throughout the year.",
+    missions_section_aria: "Missions content",
+    missions_why_title: "Why missions",
+    missions_why_text:
+      "Because God's love sends us. Missions means witnessing Christ in everyday life, welcoming those in need, and forming disciples faithful to Scripture.",
+    missions_mission_title: "Our mission",
+    missions_mission_text:
+      "To be a community that proclaims the Gospel and serves with humility — focused on people, families, and reconciliation, starting where we are and reaching beyond.",
+    missions_values_title: "Values",
+    missions_value_1: "The Bible as our foundation and guide for Christian life.",
+    missions_value_2: "Prayer, worship, and fellowship as our community rhythm.",
+    missions_value_3: "Welcome: everyone is received with dignity and care.",
+    missions_value_4: "Practical service: helping through real and consistent actions.",
+    missions_value_5: "Unity and cooperation with other churches and Christian projects.",
+    missions_contribute_aria: "How to contribute to missions",
+    missions_contribute_title: "How to contribute",
+    missions_contribute_text:
+      "You can support missions in simple, steady ways — with time, resources, and availability. Talk to the church to learn current needs.",
+    missions_contribute_way_1_title: "Presence & service",
+    missions_contribute_way_1_text:
+      "Volunteer in welcome actions, family support, and event organization.",
+    missions_contribute_way_2_title: "Giving",
+    missions_contribute_way_2_text:
+      "Give offerings, food, or items for campaigns — as guided by church leadership.",
+    missions_contribute_way_3_title: "Intercession",
+    missions_contribute_way_3_text:
+      "Pray for missionaries, the families we support, and the church’s next steps in France.",
+    missions_cta_talk: "Talk to the church",
+    missions_cta_see_cantina: "See Cafeteria",
 
     ministries_badge: "Discover",
     ministries_title: "Church Ministries",
@@ -337,6 +421,7 @@ export const translations = {
   fr: {
     nav_estudo: "Étude",
     nav_cultos: "Cultes",
+    nav_missoes: "Missions",
     nav_ministerios: "Ministères",
     nav_cantina: "Cantine",
     nav_celulas: "Cellules",
@@ -360,6 +445,47 @@ export const translations = {
     home_celulas: "CELLULES",
     home_informacoes: "INFOS",
     home_familia_pastoral: "Famille pastorale.",
+
+    // Missions
+    missions_kicker: "Service • Compassion • Évangile",
+    missions_title: "Missions",
+    missions_subtitle:
+      "Les missions, c’est annoncer la Bonne Nouvelle par les paroles et les actions : former des disciples, servir et prendre soin des personnes. Découvrez ce qui nous anime et comment contribuer.",
+    missions_badge_local: "Action locale",
+    missions_badge_global: "Vision globale",
+    missions_badge_compassion: "Compassion",
+    missions_cta_contribute: "Je veux contribuer",
+    missions_cta_cantina: "Soutenir via la Cantine",
+    missions_disclaimer:
+      "Note : cette page présente des principes généraux ; les détails des projets et des campagnes peuvent évoluer au fil de l’année.",
+    missions_section_aria: "Contenu sur les missions",
+    missions_why_title: "Pourquoi les missions",
+    missions_why_text:
+      "Parce que l’amour de Dieu nous envoie. Les missions, c’est témoigner du Christ au quotidien, accueillir ceux qui souffrent et former des disciples fidèles aux Écritures.",
+    missions_mission_title: "Notre mission",
+    missions_mission_text:
+      "Être une communauté qui annonce l’Évangile et sert avec humilité — centrée sur les personnes, les familles et la réconciliation, en commençant ici et en allant plus loin.",
+    missions_values_title: "Valeurs",
+    missions_value_1: "La Bible comme base et direction pour la vie chrétienne.",
+    missions_value_2: "Prière, louange et communion comme rythme de communauté.",
+    missions_value_3: "Accueil : chacun est reçu avec dignité et soin.",
+    missions_value_4: "Service concret : aider par des actions réelles et constantes.",
+    missions_value_5: "Unité et coopération avec d’autres églises et projets chrétiens.",
+    missions_contribute_aria: "Comment contribuer aux missions",
+    missions_contribute_title: "Comment contribuer",
+    missions_contribute_text:
+      "Vous pouvez soutenir les missions de manière simple et régulière — avec du temps, des ressources et de la disponibilité. Parlez à l’église pour connaître les besoins du moment.",
+    missions_contribute_way_1_title: "Présence et service",
+    missions_contribute_way_1_text:
+      "Devenez bénévole pour l’accueil, le soutien aux familles et l’organisation d’événements.",
+    missions_contribute_way_2_title: "Don",
+    missions_contribute_way_2_text:
+      "Contribuez par des offrandes, des denrées ou des articles pour les campagnes — selon les indications de la direction.",
+    missions_contribute_way_3_title: "Intercession",
+    missions_contribute_way_3_text:
+      "Priez pour les missionnaires, les familles accompagnées et les prochaines étapes de l’église en France.",
+    missions_cta_talk: "Parler à l’église",
+    missions_cta_see_cantina: "Voir la Cantine",
 
     ministries_badge: "Découvrir",
     ministries_title: "Ministères de l’Église",
