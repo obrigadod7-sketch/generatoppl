@@ -116,8 +116,13 @@ function downloadICS(filename: string, ics: string) {
   URL.revokeObjectURL(url);
 }
 
-function formatDateTime(dt: Date) {
-  return dt.toLocaleString("pt-BR", {
+function formatDateTime(dt: Date, locale: string) {
+  const map: Record<string, string> = {
+    pt: "pt-BR",
+    en: "en-US",
+    fr: "fr-FR",
+  };
+  return dt.toLocaleString(map[locale] || "pt-BR", {
     weekday: "short",
     day: "2-digit",
     month: "short",
@@ -157,7 +162,7 @@ const SectionTitle = forwardRef<
 
 export default function CasaisMinisterio({ ministerio }: { ministerio: Ministerio }) {
   const [openImage, setOpenImage] = useState<string | null>(null);
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
 
   const signupSchema = useMemo(
     () =>
@@ -191,8 +196,9 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
   );
 
   useEffect(() => {
-    document.title = `${ministerio.titulo} | Missão Evangélica Lusitana`;
-  }, [ministerio.titulo]);
+    const title = locale === "pt" ? ministerio.titulo : t("couples_ministry");
+    document.title = `${title} | Missão Evangélica Lusitana`;
+  }, [locale, ministerio.titulo, t]);
 
   const events: EventItem[] = useMemo(
     () => [
@@ -285,7 +291,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
 
       <main>
         {/* HERO */}
-        <section aria-label="Banner principal" className="relative min-h-auto sm:min-h-[70vh]">
+        <section aria-label={t("home_hero_aria")} className="relative min-h-auto sm:min-h-[70vh]">
           <div className="absolute inset-0">
             <img
               src={ministerio.imagem}
@@ -302,9 +308,9 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               {t("couples_ministry")}
             </p>
             <h1 className="mt-2 max-w-3xl font-display text-[clamp(2rem,5vw,3.5rem)] font-semibold uppercase leading-[1.12] tracking-[0.12em] text-primary-foreground sm:mt-3">
-              {ministerio.subtitulo || t("couples_default_subtitle")}
+              {locale === "pt" ? ministerio.subtitulo || t("couples_default_subtitle") : t("couples_default_subtitle")}
             </h1>
-            {ministerio.versiculo ? (
+            {locale === "pt" && ministerio.versiculo ? (
               <p className="mt-3 max-w-2xl text-sm text-primary-foreground/90 md:text-base">
                 “{ministerio.versiculo.texto}” — <span className="font-semibold">{ministerio.versiculo.referencia}</span>
               </p>
@@ -353,7 +359,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
           <SectionTitle
             id="identidade"
             kicker={t("couples_identity_kicker")}
-            title={ministerio.titulo}
+            title={locale === "pt" ? ministerio.titulo : t("couples_ministry")}
             subtitle={t("couples_identity_subtitle")}
           />
 
@@ -364,7 +370,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
-                  {ministerio.missao || t("couples_mission_fallback")}
+                  {locale === "pt" && ministerio.missao ? ministerio.missao : t("couples_mission_fallback")}
                 </p>
               </CardContent>
             </Card>
@@ -384,15 +390,17 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  {(ministerio.valores?.length
-                    ? ministerio.valores
-                    : [
-                        t("couples_value_fallback_1"),
-                        t("couples_value_fallback_2"),
-                        t("couples_value_fallback_3"),
-                        t("couples_value_fallback_4"),
-                        t("couples_value_fallback_5"),
-                      ]).map((v) => (
+                  {(
+                    locale === "pt" && ministerio.valores?.length
+                      ? ministerio.valores
+                      : [
+                          t("couples_value_fallback_1"),
+                          t("couples_value_fallback_2"),
+                          t("couples_value_fallback_3"),
+                          t("couples_value_fallback_4"),
+                          t("couples_value_fallback_5"),
+                        ]
+                  ).map((v) => (
                     <li key={v} className="flex items-start gap-2">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 text-foreground" aria-hidden />
                       <span>{v}</span>
@@ -410,7 +418,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
             <SectionTitle
               kicker={t("couples_about_kicker")}
               title={t("couples_about_title")}
-              subtitle={ministerio.descricao || t("couples_about_default")}
+              subtitle={locale === "pt" && ministerio.descricao ? ministerio.descricao : t("couples_about_default")}
             />
 
             <div className="mt-6 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2">
@@ -495,7 +503,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                       <p className="flex items-start gap-2">
                         <CalendarPlus className="mt-0.5 h-4 w-4 text-foreground" aria-hidden />
                         <span>
-                          {formatDateTime(evt.startDate)} — {formatDateTime(evt.endDate)}
+                          {formatDateTime(evt.startDate, locale)} — {formatDateTime(evt.endDate, locale)}
                         </span>
                       </p>
                       <p className="flex items-start gap-2">
