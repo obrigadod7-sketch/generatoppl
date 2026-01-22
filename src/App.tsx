@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { I18nProvider } from "@/i18n/I18nProvider";
 import Index from "./pages/Index";
 import Estudo from "./pages/Estudo";
@@ -32,39 +32,39 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/estudo" element={<Estudo />} />
-              <Route path="/cultos-ao-vivo" element={<CultosAoVivo />} />
-              <Route path="/cantina" element={<Cantina />} />
-              <Route path="/missoes" element={<Missoes />} />
-              <Route path="/ministerios" element={<Ministerios />} />
-              <Route path="/ministerios/:slug" element={<MinisterioDetalhe />} />
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/estudo" element={<Estudo />} />
+            <Route path="/cultos-ao-vivo" element={<CultosAoVivo />} />
+            <Route path="/cantina" element={<Cantina />} />
+            <Route path="/missoes" element={<Missoes />} />
+            <Route path="/ministerios" element={<Ministerios />} />
+            <Route path="/ministerios/:slug" element={<MinisterioDetalhe />} />
 
-              {/* Kids platform */}
-              <Route path="/kids" element={<KidsPlatform />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/setup-admin" element={<AdminSetup />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-              <Route
-                path="/kids/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <KidsDashboardLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<KidsDashboardHome />} />
-                <Route path="criancas" element={<KidsChildrenPage />} />
-                <Route path="eventos" element={<KidsEventsPage />} />
-                <Route path="checkin" element={<KidsCheckinsPage />} />
-                <Route path="leads" element={<KidsLeadsPage />} />
-              </Route>
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+            {/* Kids platform */}
+            <Route path="/kids" element={<KidsPlatform />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/setup-admin" element={<AdminSetup />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route
+              path="/kids/dashboard"
+              element={
+                <ProtectedRoute>
+                  <KidsDashboardLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<KidsDashboardHome />} />
+              <Route path="criancas" element={<KidsChildrenPage />} />
+              <Route path="eventos" element={<KidsEventsPage />} />
+              <Route path="checkin" element={<KidsCheckinsPage />} />
+              <Route path="leads" element={<KidsLeadsPage />} />
+            </Route>
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </HashRouter>
       </TooltipProvider>
     </I18nProvider>
   </QueryClientProvider>
