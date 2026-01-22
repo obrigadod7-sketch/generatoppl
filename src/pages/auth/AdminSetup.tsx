@@ -26,8 +26,7 @@ export default function AdminSetup() {
   // which breaks the recovery token flow.
   const getResetPasswordRedirectTo = () => {
     const host = window.location.hostname;
-    // HashRouter: routes must be after /#
-    const path = "/#/reset-password";
+    const path = "/reset-password";
 
     if (host.endsWith("lovableproject.com")) {
       // Use the published URL for this project.
