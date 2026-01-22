@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Not found</title>
+    <meta http-equiv="refresh" content="0; url=/" />
+  </head>
+  <body>
+    <script>
+      // Redirect unknown routes back to the SPA entry and preserve the path.
+      // main.tsx will read ?p=... and restore the route.
+      (function () {
+        var target = "/?p=" + encodeURIComponent(location.pathname + location.search + location.hash);
+        location.replace(target);
+      })();
+    </script>
+  </body>
+</html>
