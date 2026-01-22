@@ -59,22 +59,39 @@ export default function AdminSetup() {
                   const { data, error } = await supabase.functions.invoke("bootstrap-admin", {
                     body: { email: values.email, redirectTo },
                   });
-                  if (error) throw error;
-                  if (!data?.success) throw new Error(data?.error || "Falha ao criar admin");
+
+                  // supabase-js can return a FunctionsHttpError for non-2xx responses.
+                  // In this case, the JSON body may still contain our structured error.
+                  if (error) {
+                    const body = (error as any)?.context?.body;
+                    const backendError = String(body?.error || "");
+                    if (backendError === "admin_already_configured") {
+                      setShowRecoveryEmail(true);
+                      toast({
+                        title: "Admin já configurado",
+                        description: "Envie um link de recuperação para definir/alterar a senha desse email.",
+                      });
+                      return;
+                    }
+                    throw error;
+                  }
+
+                  if (!data?.success) {
+                    const err = String((data as any)?.error || "");
+                    if (err === "admin_already_configured") {
+                      setShowRecoveryEmail(true);
+                      toast({
+                        title: "Admin já configurado",
+                        description: "Envie um link de recuperação para definir/alterar a senha desse email.",
+                      });
+                      return;
+                    }
+                    throw new Error(err || "Falha ao criar admin");
+                  }
 
                   setRecoveryLink(data.recoveryLink || null);
                   toast({ title: "Admin criado!" });
                 } catch (e: any) {
-                  const msg = String(e?.message ?? "");
-                  // If an admin already exists, guide user to password recovery instead of blocking.
-                  if (msg.includes("admin_already_configured")) {
-                    setShowRecoveryEmail(true);
-                    toast({
-                      title: "Admin já configurado",
-                      description: "Envie um link de recuperação para definir/alterar a senha desse email.",
-                    });
-                    return;
-                  }
                   toast({
                     title: "Não foi possível configurar",
                     description: e?.message ?? "Tente novamente.",
