@@ -39,7 +39,8 @@ Deno.serve(async (req) => {
       .eq("role", "admin");
 
     if (countErr) return json({ success: false, error: "failed_to_check_admins" }, 500);
-    if ((count ?? 0) > 0) return json({ success: false, error: "admin_already_configured" }, 403);
+    // Return 200 to avoid client-side hard errors/blank screens, while still refusing to create a new admin.
+    if ((count ?? 0) > 0) return json({ success: false, error: "admin_already_configured" }, 200);
 
     // Create user (email already confirmed to simplify first access).
     const { data: created, error: createErr } = await admin.auth.admin.createUser({
