@@ -33,34 +33,12 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/i18n/I18nProvider";
 
-const signupSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, "Informe seu nome")
-    .max(120, "Nome muito longo"),
-  phone: z
-    .string()
-    .trim()
-    .max(40, "Telefone muito longo")
-    .optional()
-    .or(z.literal("")),
-  email: z
-    .string()
-    .trim()
-    .email("E-mail inválido")
-    .max(255, "E-mail muito longo")
-    .optional()
-    .or(z.literal("")),
-  message: z
-    .string()
-    .trim()
-    .max(1000, "Mensagem muito longa")
-    .optional()
-    .or(z.literal("")),
-});
-
-type SignupValues = z.infer<typeof signupSchema>;
+type SignupValues = {
+  name: string;
+  phone?: string | "";
+  email?: string | "";
+  message?: string | "";
+};
 
 type EventItem = {
   id: string;
@@ -181,6 +159,37 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
   const [openImage, setOpenImage] = useState<string | null>(null);
   const { t } = useI18n();
 
+  const signupSchema = useMemo(
+    () =>
+      z.object({
+        name: z
+          .string()
+          .trim()
+          .min(2, t("couples_form_name_error"))
+          .max(120, t("couples_form_name_too_long")),
+        phone: z
+          .string()
+          .trim()
+          .max(40, t("couples_form_phone_too_long"))
+          .optional()
+          .or(z.literal("")),
+        email: z
+          .string()
+          .trim()
+          .email(t("couples_form_email_invalid"))
+          .max(255, t("couples_form_email_too_long"))
+          .optional()
+          .or(z.literal("")),
+        message: z
+          .string()
+          .trim()
+          .max(1000, t("couples_form_message_too_long"))
+          .optional()
+          .or(z.literal("")),
+      }),
+    [t],
+  );
+
   useEffect(() => {
     document.title = `${ministerio.titulo} | Missão Evangélica Lusitana`;
   }, [ministerio.titulo]);
@@ -189,30 +198,30 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
     () => [
       {
         id: "encontro-mensal",
-        title: "Encontro de Casais — Palavra & Comunhão",
+        title: t("couples_event_1_title"),
         start: "2026-02-07T20:00",
         end: "2026-02-07T21:30",
-        location: "Igreja — Pontault Combault",
-        description: "Um tempo de edificação, oração e comunhão para fortalecer a aliança." ,
+        location: t("couples_event_1_location"),
+        description: t("couples_event_1_desc"),
       },
       {
         id: "devocional-online",
-        title: "Devocional Online — Casamento com Propósito",
+        title: t("couples_event_2_title"),
         start: "2026-02-18T21:00",
         end: "2026-02-18T21:40",
-        location: "Online (link enviado após inscrição)",
-        description: "Encontro curto e objetivo para alinharmos o coração à Palavra." ,
+        location: t("couples_event_2_location"),
+        description: t("couples_event_2_desc"),
       },
       {
         id: "cafe-conversa",
-        title: "Café & Conversa — Pais e Filhos",
+        title: t("couples_event_3_title"),
         start: "2026-03-07T16:30",
         end: "2026-03-07T18:00",
-        location: "Igreja — Montereau-Fault-Yonne",
-        description: "Roda de conversa e oração para famílias (com espaço para crianças).",
+        location: t("couples_event_3_location"),
+        description: t("couples_event_3_desc"),
       },
     ],
-    [],
+    [t],
   );
 
   const eventsWithDates = useMemo(() => {
@@ -280,7 +289,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
           <div className="absolute inset-0">
             <img
               src={ministerio.imagem}
-              alt="Casal cristão em momento de carinho e parceria"
+              alt={t("couples_hero_alt")}
               className="h-full w-full object-cover"
               loading="lazy"
             />
@@ -355,7 +364,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
-                  {ministerio.missao || "Edificar casais e famílias, com ensino bíblico, cuidado pastoral e comunhão."}
+                  {ministerio.missao || t("couples_mission_fallback")}
                 </p>
               </CardContent>
             </Card>
@@ -365,7 +374,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
-                  Formar lares firmes em Cristo: relacionamentos saudáveis, filhos discipulados e uma igreja acolhedora.
+                  {t("couples_vision_fallback")}
                 </p>
               </CardContent>
             </Card>
@@ -377,7 +386,13 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   {(ministerio.valores?.length
                     ? ministerio.valores
-                    : ["Fidelidade", "Perdão", "Comunhão", "Serviço", "Aliança"]).map((v) => (
+                    : [
+                        t("couples_value_fallback_1"),
+                        t("couples_value_fallback_2"),
+                        t("couples_value_fallback_3"),
+                        t("couples_value_fallback_4"),
+                        t("couples_value_fallback_5"),
+                      ]).map((v) => (
                     <li key={v} className="flex items-start gap-2">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 text-foreground" aria-hidden />
                       <span>{v}</span>
@@ -406,18 +421,18 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                 <CardContent className="space-y-4 pt-0 px-4 pb-4 sm:space-y-5 sm:px-6 sm:pb-6">
                   <FeatureItem
                     icon={Users}
-                    title="Casais em todas as fases"
-                    text="Jovens, maduros, com filhos, recém-casados e também noivos em preparação."
+                    title={t("couples_feature_for_1_title")}
+                    text={t("couples_feature_for_1_text")}
                   />
                   <FeatureItem
                     icon={HeartHandshake}
-                    title="Casais que querem recomeçar"
-                    text="Se o relacionamento precisa de cura, direção e acompanhamento, você é bem-vindo."
+                    title={t("couples_feature_for_2_title")}
+                    text={t("couples_feature_for_2_text")}
                   />
                   <FeatureItem
                     icon={Home}
-                    title="Famílias em construção"
-                    text="Apoiamos a vida no lar: rotina, finanças, criação dos filhos e espiritualidade."
+                    title={t("couples_feature_for_3_title")}
+                    text={t("couples_feature_for_3_text")}
                   />
                 </CardContent>
               </Card>
@@ -429,18 +444,18 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                 <CardContent className="space-y-4 pt-0 px-4 pb-4 sm:space-y-5 sm:px-6 sm:pb-6">
                   <FeatureItem
                     icon={Church}
-                    title="Encontros presenciais"
-                    text="Momentos de palavra, conversa guiada e oração em um ambiente acolhedor."
+                    title={t("couples_feature_how_1_title")}
+                    text={t("couples_feature_how_1_text")}
                   />
                   <FeatureItem
                     icon={MessageSquare}
-                    title="Acompanhamento"
-                    text="Orientação, apoio e encaminhamento pastoral quando necessário."
+                    title={t("couples_feature_how_2_title")}
+                    text={t("couples_feature_how_2_text")}
                   />
                   <FeatureItem
                     icon={User}
-                    title="Participação simples"
-                    text="Preencha o formulário e você receberá as próximas datas e informações."
+                    title={t("couples_feature_how_3_title")}
+                    text={t("couples_feature_how_3_text")}
                   />
                 </CardContent>
               </Card>
@@ -538,11 +553,11 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                     type="button"
                     onClick={() => setOpenImage(src)}
                     className="group relative overflow-hidden rounded-md border border-border bg-muted text-left"
-                    aria-label={`Abrir foto ${idx + 1}`}
+                    aria-label={`${t("couples_gallery_open_photo")} ${idx + 1}`}
                   >
                     <img
                       src={src}
-                      alt={`Foto do Ministério de Casais (${idx + 1})`}
+                      alt={`${t("couples_gallery_photo_alt_prefix")} (${idx + 1})`}
                       className="aspect-[4/3] h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                       loading="lazy"
                     />
@@ -558,7 +573,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                   </DialogHeader>
                   {openImage ? (
                     <div className="relative overflow-hidden rounded-md border border-border bg-muted">
-                      <img src={openImage} alt="Foto ampliada" className="h-full w-full object-contain" loading="lazy" />
+                      <img src={openImage} alt={t("couples_gallery_zoom_alt")} className="h-full w-full object-contain" loading="lazy" />
                     </div>
                   ) : null}
                 </DialogContent>
@@ -583,9 +598,9 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
-                  "Que o amor de vocês seja paciente e bondoso" — pratique hoje: ouça sem interromper e ore juntos por 2 minutos.
+                  {t("couples_devotional_text")}
                 </p>
-                <p className="mt-3 text-xs text-muted-foreground">Base: 1 Coríntios 13</p>
+                <p className="mt-3 text-xs text-muted-foreground">{t("couples_devotional_base")}</p>
               </CardContent>
             </Card>
             <Card className="shadow-none sm:shadow-elev">
@@ -594,9 +609,9 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
-                  "Aliança é decisão" — sentimentos oscilam, mas compromisso se fortalece com verdade, perdão e serviço mútuo.
+                  {t("couples_article_text")}
                 </p>
-                <p className="mt-3 text-xs text-muted-foreground">Base: Efésios 5</p>
+                <p className="mt-3 text-xs text-muted-foreground">{t("couples_article_base")}</p>
               </CardContent>
             </Card>
             <Card className="shadow-none sm:shadow-elev">
@@ -605,7 +620,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
-                  Em breve: mensagens gravadas do ministério (vídeos curtos) para acompanhar o casal durante a semana.
+                  {t("couples_message_soon")}
                 </p>
               </CardContent>
             </Card>
@@ -618,7 +633,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               </CardHeader>
               <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                 <p className="text-sm text-muted-foreground">
-                  "Aprendemos a conversar com calma e a orar antes de decidir. Deus restaurou nossa paz e nossa parceria." — Um casal do ministério
+                  {t("couples_testimony_text")}
                 </p>
               </CardContent>
             </Card>
@@ -638,7 +653,7 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
               <div className="relative overflow-hidden rounded-md border border-border bg-muted">
                 <img
                   src={gallery[0] || ministerio.imagem}
-                  alt="Casal líder do Ministério de Casais"
+                  alt={t("couples_leadership_photo_alt")}
                   className="aspect-[4/5] h-full w-full object-cover"
                   loading="lazy"
                 />
@@ -650,11 +665,11 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                 </CardHeader>
                 <CardContent className="pt-0 px-4 pb-4 sm:px-6 sm:pb-6">
                   <p className="text-sm text-muted-foreground">
-                    <span className="font-semibold text-foreground">Pr. (Nome) & (Nome)</span> — servindo famílias com amor, verdade e graça.
+                    <span className="font-semibold text-foreground">{t("couples_leader_names")}</span> — {t("couples_leader_line")}
                   </p>
                   <Separator className="my-5" />
                   <p className="text-sm text-muted-foreground">
-                    "Nosso desejo é caminhar com você: ouvir, orar e apontar para Cristo — o centro do lar. Aqui ninguém anda sozinho."
+                    {t("couples_leader_quote")}
                   </p>
                 </CardContent>
               </Card>
@@ -682,19 +697,19 @@ export default function CasaisMinisterio({ ministerio }: { ministerio: Ministeri
                     <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">
                       1
                     </span>
-                    <span>Envie sua inscrição pelo formulário.</span>
+                  <span>{t("couples_steps_1")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">
                       2
                     </span>
-                    <span>Você receberá data, local e orientações do próximo encontro.</span>
+                  <span>{t("couples_steps_2")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">
                       3
                     </span>
-                    <span>Venha como está — com fé, dúvidas ou recomeços. Seja bem-vindo.</span>
+                  <span>{t("couples_steps_3")}</span>
                   </li>
                 </ol>
 
