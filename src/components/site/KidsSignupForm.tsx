@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/i18n/I18nProvider";
+import { translations } from "@/i18n/translations";
 
 type KidsSignupValues = {
   parent_name: string;
@@ -21,9 +22,12 @@ type KidsSignupValues = {
 };
 
 export function KidsSignupForm() {
-  const { t: tRaw } = useI18n();
-  // NOTE: keep permissive typing locally to avoid blocking new translation keys.
-  const tx: (key: string) => string = (key) => (tRaw as any)(key);
+  const { locale } = useI18n();
+  const tx = (key: string): string => {
+    const current = translations[locale] as Record<string, string>;
+    const fallback = translations.pt as Record<string, string>;
+    return current[key] ?? fallback[key] ?? key;
+  };
   const [submitting, setSubmitting] = useState(false);
 
   const schema = useMemo(
@@ -62,7 +66,7 @@ export function KidsSignupForm() {
           .or(z.literal("")),
         message: z.string().trim().max(1000, tx("kids_form_message_too_long")).optional().or(z.literal("")),
       }),
-    [t],
+    [locale],
   );
 
   const form = useForm<KidsSignupValues>({
