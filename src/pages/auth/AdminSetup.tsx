@@ -28,9 +28,12 @@ export default function AdminSetup() {
     const host = window.location.hostname;
     const path = "/reset-password";
 
+    // Public preview URL for this project (supports SPA routing).
+    // Using the published URL currently results in a 404 on deep links.
+    const publicPreviewBase = "https://id-preview--a7811ba7-4976-4442-bee1-35dae247085f.lovable.app";
+
     if (host.endsWith("lovableproject.com")) {
-      // Use the published URL for this project.
-      return `https://generatoppl.lovable.app${path}`;
+      return `${publicPreviewBase}${path}`;
     }
 
     return `${window.location.origin}${path}`;
