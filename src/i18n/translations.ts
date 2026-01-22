@@ -216,6 +216,72 @@ export const translations = {
     error: "Erro",
     couples_signup_error: "Não foi possível enviar agora.",
 
+    // Couples page (extra strings / fallbacks)
+    couples_hero_alt: "Casal cristão em momento de carinho e parceria",
+    couples_mission_fallback: "Edificar casais e famílias, com ensino bíblico, cuidado pastoral e comunhão.",
+    couples_vision_fallback:
+      "Formar lares firmes em Cristo: relacionamentos saudáveis, filhos discipulados e uma igreja acolhedora.",
+    couples_value_fallback_1: "Fidelidade",
+    couples_value_fallback_2: "Perdão",
+    couples_value_fallback_3: "Comunhão",
+    couples_value_fallback_4: "Serviço",
+    couples_value_fallback_5: "Aliança",
+
+    couples_event_1_title: "Encontro de Casais — Palavra & Comunhão",
+    couples_event_1_location: "Igreja — Pontault Combault",
+    couples_event_1_desc: "Um tempo de edificação, oração e comunhão para fortalecer a aliança.",
+    couples_event_2_title: "Devocional Online — Casamento com Propósito",
+    couples_event_2_location: "Online (link enviado após inscrição)",
+    couples_event_2_desc: "Encontro curto e objetivo para alinharmos o coração à Palavra.",
+    couples_event_3_title: "Café & Conversa — Pais e Filhos",
+    couples_event_3_location: "Igreja — Montereau-Fault-Yonne",
+    couples_event_3_desc: "Roda de conversa e oração para famílias (com espaço para crianças).",
+
+    couples_feature_for_1_title: "Casais em todas as fases",
+    couples_feature_for_1_text: "Jovens, maduros, com filhos, recém-casados e também noivos em preparação.",
+    couples_feature_for_2_title: "Casais que querem recomeçar",
+    couples_feature_for_2_text: "Se o relacionamento precisa de cura, direção e acompanhamento, você é bem-vindo.",
+    couples_feature_for_3_title: "Famílias em construção",
+    couples_feature_for_3_text: "Apoiamos a vida no lar: rotina, finanças, criação dos filhos e espiritualidade.",
+
+    couples_feature_how_1_title: "Encontros presenciais",
+    couples_feature_how_1_text: "Momentos de palavra, conversa guiada e oração em um ambiente acolhedor.",
+    couples_feature_how_2_title: "Acompanhamento",
+    couples_feature_how_2_text: "Orientação, apoio e encaminhamento pastoral quando necessário.",
+    couples_feature_how_3_title: "Participação simples",
+    couples_feature_how_3_text: "Preencha o formulário e você receberá as próximas datas e informações.",
+
+    couples_gallery_open_photo: "Abrir foto",
+    couples_gallery_photo_alt_prefix: "Foto do Ministério de Casais",
+    couples_gallery_zoom_alt: "Foto ampliada",
+
+    couples_devotional_text:
+      "\"Que o amor de vocês seja paciente e bondoso\" — pratique hoje: ouça sem interromper e ore juntos por 2 minutos.",
+    couples_devotional_base: "Base: 1 Coríntios 13",
+    couples_article_text:
+      "\"Aliança é decisão\" — sentimentos oscilam, mas compromisso se fortalece com verdade, perdão e serviço mútuo.",
+    couples_article_base: "Base: Efésios 5",
+    couples_message_soon: "Em breve: mensagens gravadas do ministério (vídeos curtos) para acompanhar o casal durante a semana.",
+    couples_testimony_text:
+      "\"Aprendemos a conversar com calma e a orar antes de decidir. Deus restaurou nossa paz e nossa parceria.\" — Um casal do ministério",
+
+    couples_leadership_photo_alt: "Casal líder do Ministério de Casais",
+    couples_leader_names: "Pr. (Nome) & (Nome)",
+    couples_leader_line: "Servindo famílias com amor, verdade e graça.",
+    couples_leader_quote:
+      "\"Nosso desejo é caminhar com você: ouvir, orar e apontar para Cristo — o centro do lar. Aqui ninguém anda sozinho.\"",
+
+    couples_steps_1: "Envie sua inscrição pelo formulário.",
+    couples_steps_2: "Você receberá data, local e orientações do próximo encontro.",
+    couples_steps_3: "Venha como está — com fé, dúvidas ou recomeços. Seja bem-vindo.",
+
+    couples_form_name_error: "Informe seu nome",
+    couples_form_name_too_long: "Nome muito longo",
+    couples_form_phone_too_long: "Telefone muito longo",
+    couples_form_email_invalid: "E-mail inválido",
+    couples_form_email_too_long: "E-mail muito longo",
+    couples_form_message_too_long: "Mensagem muito longa",
+
     // 404
     not_found: "Ops! Página não encontrada",
     return_home: "Voltar para o início",
@@ -413,6 +479,72 @@ export const translations = {
     couples_signup_sent_desc: "We received your details. We'll contact you soon.",
     error: "Error",
     couples_signup_error: "We couldn't send right now.",
+
+    // Couples page (extra strings / fallbacks)
+    couples_hero_alt: "Christian couple sharing a moment of affection and partnership",
+    couples_mission_fallback: "To build up couples and families through biblical teaching, pastoral care, and fellowship.",
+    couples_vision_fallback:
+      "To form homes rooted in Christ: healthy relationships, discipled children, and a welcoming church.",
+    couples_value_fallback_1: "Faithfulness",
+    couples_value_fallback_2: "Forgiveness",
+    couples_value_fallback_3: "Fellowship",
+    couples_value_fallback_4: "Service",
+    couples_value_fallback_5: "Covenant",
+
+    couples_event_1_title: "Couples Meeting — Word & Fellowship",
+    couples_event_1_location: "Church — Pontault Combault",
+    couples_event_1_desc: "A time of encouragement, prayer, and fellowship to strengthen the covenant.",
+    couples_event_2_title: "Online Devotional — Marriage with Purpose",
+    couples_event_2_location: "Online (link sent after signup)",
+    couples_event_2_desc: "Short and focused meeting to align our hearts with the Word.",
+    couples_event_3_title: "Coffee & Conversation — Parents and Children",
+    couples_event_3_location: "Church — Montereau-Fault-Yonne",
+    couples_event_3_desc: "Conversation circle and prayer for families (with space for kids).",
+
+    couples_feature_for_1_title: "Couples at every stage",
+    couples_feature_for_1_text: "Young or mature, with kids, newlyweds, and engaged couples preparing for marriage.",
+    couples_feature_for_2_title: "Couples who want a restart",
+    couples_feature_for_2_text: "If your relationship needs healing, direction, and support, you are welcome.",
+    couples_feature_for_3_title: "Families in progress",
+    couples_feature_for_3_text: "We support home life: routines, finances, raising kids, and spirituality.",
+
+    couples_feature_how_1_title: "In-person meetings",
+    couples_feature_how_1_text: "Moments of the Word, guided conversation, and prayer in a welcoming environment.",
+    couples_feature_how_2_title: "Support",
+    couples_feature_how_2_text: "Guidance, help, and pastoral referral when needed.",
+    couples_feature_how_3_title: "Easy to join",
+    couples_feature_how_3_text: "Fill the form and you'll receive the next dates and information.",
+
+    couples_gallery_open_photo: "Open photo",
+    couples_gallery_photo_alt_prefix: "Couples Ministry photo",
+    couples_gallery_zoom_alt: "Enlarged photo",
+
+    couples_devotional_text:
+      "\"May your love be patient and kind\" — practice today: listen without interrupting and pray together for 2 minutes.",
+    couples_devotional_base: "Based on: 1 Corinthians 13",
+    couples_article_text:
+      "\"Covenant is a decision\" — feelings fluctuate, but commitment grows with truth, forgiveness, and mutual service.",
+    couples_article_base: "Based on: Ephesians 5",
+    couples_message_soon: "Coming soon: recorded messages from the ministry (short videos) to support couples during the week.",
+    couples_testimony_text:
+      "\"We learned to talk calmly and to pray before deciding. God restored our peace and partnership.\" — A couple from the ministry",
+
+    couples_leadership_photo_alt: "Leading couple of the Couples Ministry",
+    couples_leader_names: "Pr. (Name) & (Name)",
+    couples_leader_line: "Serving families with love, truth, and grace.",
+    couples_leader_quote:
+      "\"Our desire is to walk with you: listen, pray, and point to Christ — the center of the home. No one walks alone here.\"",
+
+    couples_steps_1: "Submit your signup through the form.",
+    couples_steps_2: "You'll receive the date, location, and guidance for the next meeting.",
+    couples_steps_3: "Come as you are — with faith, doubts, or fresh starts. You are welcome.",
+
+    couples_form_name_error: "Please enter your name",
+    couples_form_name_too_long: "Name is too long",
+    couples_form_phone_too_long: "Phone number is too long",
+    couples_form_email_invalid: "Invalid email",
+    couples_form_email_too_long: "Email is too long",
+    couples_form_message_too_long: "Message is too long",
 
     not_found: "Oops! Page not found",
     return_home: "Return to Home",
@@ -613,6 +745,79 @@ export const translations = {
     couples_signup_sent_desc: "Nous avons reçu vos informations. Nous vous contacterons bientôt.",
     error: "Erreur",
     couples_signup_error: "Impossible d'envoyer pour le moment.",
+
+    // Couples page (extra strings / fallbacks)
+    couples_hero_alt: "Couple chrétien partageant un moment de tendresse et de partenariat",
+    couples_mission_fallback:
+      "Édifier les couples et les familles par l’enseignement biblique, l’accompagnement pastoral et la communion.",
+    couples_vision_fallback:
+      "Former des foyers solides en Christ : des relations saines, des enfants formés et une église accueillante.",
+    couples_value_fallback_1: "Fidélité",
+    couples_value_fallback_2: "Pardon",
+    couples_value_fallback_3: "Communion",
+    couples_value_fallback_4: "Service",
+    couples_value_fallback_5: "Alliance",
+
+    couples_event_1_title: "Rencontre des couples — Parole & Communion",
+    couples_event_1_location: "Église — Pontault Combault",
+    couples_event_1_desc: "Un temps d’édification, de prière et de communion pour fortifier l’alliance.",
+    couples_event_2_title: "Dévotionnel en ligne — Mariage avec sens",
+    couples_event_2_location: "En ligne (lien envoyé après inscription)",
+    couples_event_2_desc: "Rencontre courte et ciblée pour aligner nos cœurs avec la Parole.",
+    couples_event_3_title: "Café & Discussion — Parents et enfants",
+    couples_event_3_location: "Église — Montereau-Fault-Yonne",
+    couples_event_3_desc: "Temps d’échange et de prière pour les familles (avec espace pour les enfants).",
+
+    couples_feature_for_1_title: "Couples à toutes les étapes",
+    couples_feature_for_1_text:
+      "Jeunes ou plus mûrs, avec enfants, jeunes mariés, et fiancés en préparation.",
+    couples_feature_for_2_title: "Couples qui veulent repartir",
+    couples_feature_for_2_text:
+      "Si votre relation a besoin de guérison, de direction et de soutien, vous êtes les bienvenus.",
+    couples_feature_for_3_title: "Familles en construction",
+    couples_feature_for_3_text:
+      "Nous soutenons la vie au foyer : rythme, finances, éducation des enfants et spiritualité.",
+
+    couples_feature_how_1_title: "Rencontres en présentiel",
+    couples_feature_how_1_text:
+      "Moments de Parole, d’échange guidé et de prière dans un cadre accueillant.",
+    couples_feature_how_2_title: "Accompagnement",
+    couples_feature_how_2_text: "Orientation, soutien et accompagnement pastoral si nécessaire.",
+    couples_feature_how_3_title: "Participation simple",
+    couples_feature_how_3_text:
+      "Remplissez le formulaire et vous recevrez les prochaines dates et informations.",
+
+    couples_gallery_open_photo: "Ouvrir la photo",
+    couples_gallery_photo_alt_prefix: "Photo du ministère des couples",
+    couples_gallery_zoom_alt: "Photo agrandie",
+
+    couples_devotional_text:
+      "\"Que votre amour soit patient et bon\" — pratiquez aujourd’hui : écoutez sans interrompre et priez ensemble 2 minutes.",
+    couples_devotional_base: "Base : 1 Corinthiens 13",
+    couples_article_text:
+      "\"L’alliance est une décision\" — les émotions varient, mais l’engagement grandit avec vérité, pardon et service mutuel.",
+    couples_article_base: "Base : Éphésiens 5",
+    couples_message_soon:
+      "Bientôt : des messages enregistrés du ministère (courtes vidéos) pour accompagner le couple pendant la semaine.",
+    couples_testimony_text:
+      "\"Nous avons appris à parler calmement et à prier avant de décider. Dieu a restauré notre paix et notre partenariat.\" — Un couple du ministère",
+
+    couples_leadership_photo_alt: "Couple responsable du ministère des couples",
+    couples_leader_names: "Pr. (Nom) & (Nom)",
+    couples_leader_line: "Au service des familles avec amour, vérité et grâce.",
+    couples_leader_quote:
+      "\"Notre désir est de marcher avec vous : écouter, prier et vous conduire vers Christ — le centre du foyer. Ici, personne ne marche seul.\"",
+
+    couples_steps_1: "Envoyez votre inscription via le formulaire.",
+    couples_steps_2: "Vous recevrez la date, le lieu et les informations de la prochaine rencontre.",
+    couples_steps_3: "Venez comme vous êtes — avec foi, doutes ou nouveaux départs. Soyez les bienvenus.",
+
+    couples_form_name_error: "Veuillez saisir votre nom",
+    couples_form_name_too_long: "Nom trop long",
+    couples_form_phone_too_long: "Numéro de téléphone trop long",
+    couples_form_email_invalid: "E-mail invalide",
+    couples_form_email_too_long: "E-mail trop long",
+    couples_form_message_too_long: "Message trop long",
 
     not_found: "Oups ! Page introuvable",
     return_home: "Retour à l’accueil",
