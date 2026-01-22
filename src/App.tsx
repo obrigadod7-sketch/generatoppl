@@ -12,6 +12,15 @@ import Ministerios from "./pages/Ministerios";
 import MinisterioDetalhe from "./pages/MinisterioDetalhe";
 import Missoes from "./pages/Missoes";
 import NotFound from "./pages/NotFound";
+import KidsPlatform from "./pages/KidsPlatform";
+import Login from "./pages/auth/Login";
+import KidsDashboardLayout from "./pages/kids/KidsDashboardLayout";
+import KidsDashboardHome from "./pages/kids/KidsDashboardHome";
+import KidsChildrenPage from "./pages/kids/KidsChildrenPage";
+import KidsEventsPage from "./pages/kids/KidsEventsPage";
+import KidsCheckinsPage from "./pages/kids/KidsCheckinsPage";
+import KidsLeadsPage from "./pages/kids/KidsLeadsPage";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +39,24 @@ const App = () => (
               <Route path="/missoes" element={<Missoes />} />
               <Route path="/ministerios" element={<Ministerios />} />
               <Route path="/ministerios/:slug" element={<MinisterioDetalhe />} />
+
+              {/* Kids platform */}
+              <Route path="/kids" element={<KidsPlatform />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/kids/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <KidsDashboardLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<KidsDashboardHome />} />
+                <Route path="criancas" element={<KidsChildrenPage />} />
+                <Route path="eventos" element={<KidsEventsPage />} />
+                <Route path="checkin" element={<KidsCheckinsPage />} />
+                <Route path="leads" element={<KidsLeadsPage />} />
+              </Route>
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
