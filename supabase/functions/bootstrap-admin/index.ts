@@ -21,6 +21,7 @@ Deno.serve(async (req) => {
   try {
     const body = await req.json().catch(() => ({}));
     const email = String(body?.email || "").trim().toLowerCase();
+    const redirectTo = String(body?.redirectTo || "").trim();
     if (!email) return json({ success: false, error: "email is required" }, 400);
 
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
@@ -63,6 +64,7 @@ Deno.serve(async (req) => {
     const { data: linkData, error: linkErr } = await admin.auth.admin.generateLink({
       type: "recovery",
       email,
+      options: redirectTo ? { redirectTo } : undefined,
     });
 
     if (linkErr) return json({ success: true }, 200);
