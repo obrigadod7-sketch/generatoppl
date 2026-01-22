@@ -18,6 +18,7 @@ export function ElementorHeader() {
     { href: "/cultos-ao-vivo", label: t("nav_cultos") },
     { href: "/missoes", label: t("nav_missoes") },
     { href: "/ministerios", label: t("nav_ministerios") },
+    { href: "/ministerios/ministerio-infantil", label: t("nav_infantil") },
     { href: "/cantina", label: t("nav_cantina") },
     { href: "#celulas", label: t("nav_celulas") },
     { href: "#pastoral", label: t("nav_familia_pastoral") },

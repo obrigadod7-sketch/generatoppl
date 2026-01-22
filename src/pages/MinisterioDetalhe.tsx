@@ -19,6 +19,7 @@ import { toast } from "@/hooks/use-toast";
 import { useIsAdmin } from "@/hooks/use-is-admin";
 import { getMinisterioBySlug, MINISTERIO_SOCIALS } from "@/shared/ministerios";
 import CasaisMinisterio from "@/pages/CasaisMinisterio";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function BulletList({ items }: { items?: string[] }) {
   if (!items?.length) return null;
@@ -44,6 +45,29 @@ export default function MinisterioDetalhe() {
   const { slug } = useParams();
   const ministerio = getMinisterioBySlug(slug || "");
   const isCasais = ministerio?.slug === "ministerio-de-casais";
+  const isInfantil = ministerio?.slug === "ministerio-infantil";
+  const { t } = useI18n();
+
+  const infantil = isInfantil
+    ? {
+        titulo: t("kids_title"),
+        subtitulo: t("kids_subtitle"),
+        descricao: t("kids_about_text"),
+        missao: t("kids_mission_text"),
+        valores: [
+          t("kids_value_1"),
+          t("kids_value_2"),
+          t("kids_value_3"),
+          t("kids_value_4"),
+        ],
+        atividades: [t("kids_activity_1"), t("kids_activity_2"), t("kids_activity_3")],
+        comoParticipar: t("kids_how_text"),
+        lideranca: [
+          { role: t("kids_leader_1_role"), name: t("kids_leader_1_name") },
+          { role: t("kids_leader_2_role"), name: t("kids_leader_2_name") },
+        ],
+      }
+    : null;
 
   if (ministerio && isCasais) {
     return <CasaisMinisterio ministerio={ministerio} />;
@@ -121,12 +145,12 @@ export default function MinisterioDetalhe() {
           <div className="relative mx-auto w-full max-w-[1100px] px-6 py-14 md:py-20">
             <Badge variant="secondary">Ministério</Badge>
             <h1 className="mt-3 font-display text-3xl uppercase tracking-[0.14em] md:text-5xl">
-              {ministerio.titulo}
+              {infantil?.titulo ?? ministerio.titulo}
             </h1>
 
             {(ministerio.subtitulo || ministerio.resumo) && (
               <p className="mt-3 max-w-2xl text-muted-foreground">
-                {ministerio.subtitulo || ministerio.resumo}
+                {infantil?.subtitulo ?? ministerio.subtitulo ?? ministerio.resumo}
               </p>
             )}
 
@@ -203,47 +227,74 @@ export default function MinisterioDetalhe() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Sobre</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">
+                  {isInfantil ? t("kids_about_title") : "Sobre"}
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">{ministerio.descricao}</p>
+                <p className="text-sm text-muted-foreground">{infantil?.descricao ?? ministerio.descricao}</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
                 <CardTitle className="font-display uppercase tracking-[0.12em]">
-                  Missão e valores
+                  {isInfantil ? t("kids_mission_values_title") : "Missão e valores"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                {ministerio.missao && <p className="text-sm text-muted-foreground">{ministerio.missao}</p>}
+                {(infantil?.missao ?? ministerio.missao) && (
+                  <p className="text-sm text-muted-foreground">{infantil?.missao ?? ministerio.missao}</p>
+                )}
                 <div className="mt-4">
-                  <BulletList items={ministerio.valores} />
+                  <BulletList items={infantil?.valores ?? ministerio.valores} />
                 </div>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Atividades</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">
+                  {isInfantil ? t("kids_activities_title") : "Atividades"}
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <BulletList items={ministerio.atividades} />
+                <BulletList items={infantil?.atividades ?? ministerio.atividades} />
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="font-display uppercase tracking-[0.12em]">Como participar</CardTitle>
+                <CardTitle className="font-display uppercase tracking-[0.12em]">
+                  {isInfantil ? t("kids_how_title") : "Como participar"}
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  {ministerio.comoParticipar ||
+                  {infantil?.comoParticipar ||
+                    ministerio.comoParticipar ||
                     "Fale com a liderança após o culto ou envie uma mensagem pelas redes sociais para receber orientações."}
                 </p>
               </CardContent>
             </Card>
+
+            {isInfantil && infantil && (
+              <Card className="md:col-span-2">
+                <CardHeader>
+                  <CardTitle className="font-display uppercase tracking-[0.12em]">{t("kids_leadership_title")}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {infantil.lideranca.map((l) => (
+                      <div key={`${l.role}-${l.name}`} className="rounded-md border border-border bg-card p-4">
+                        <p className="text-sm font-semibold text-foreground">{l.role}</p>
+                        <p className="mt-1 text-sm text-muted-foreground">{l.name}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {ministerio.versiculo && (

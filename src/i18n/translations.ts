@@ -15,6 +15,7 @@ export const translations = {
     nav_cultos: "Cultos",
     nav_missoes: "Missões",
     nav_ministerios: "Ministérios",
+    nav_infantil: "Infantil",
     nav_cantina: "Cantina",
     nav_celulas: "Células",
     nav_familia_pastoral: "Família Pastoral",
@@ -87,6 +88,32 @@ export const translations = {
       "Acompanhe os ministérios e participe. As fotos oficiais serão adicionadas a partir das redes sociais.",
     view_details: "Ver detalhes",
     back: "Voltar",
+
+    // Kids ministry
+    kids_title: "Ministério Infantil",
+    kids_subtitle: "Cuidando das crianças com amor, ensino e segurança",
+    kids_about_title: "Sobre",
+    kids_about_text:
+      "Recebemos crianças e famílias com acolhimento e responsabilidade, ensinando a Palavra de Deus de forma simples e prática.",
+    kids_mission_values_title: "Missão e valores",
+    kids_mission_text:
+      "Servir as crianças com alegria e reverência, ajudando-as a conhecer Jesus e apoiando os pais na formação cristã do lar.",
+    kids_value_1: "Bíblia como base: Jesus no centro de cada encontro.",
+    kids_value_2: "Segurança e cuidado: ambiente protegido e respeitoso.",
+    kids_value_3: "Acolhimento: cada criança é vista, ouvida e amada.",
+    kids_value_4: "Parceria com a família: caminhar junto com pais e responsáveis.",
+    kids_activities_title: "Atividades",
+    kids_activity_1: "Aulas e histórias bíblicas por faixa etária",
+    kids_activity_2: "Louvor, oração e dinâmica com aplicação prática",
+    kids_activity_3: "Datas especiais e momentos em família",
+    kids_how_title: "Como participar",
+    kids_how_text:
+      "Fale com a equipe do Ministério Infantil no domingo; você receberá orientações de check-in, idades atendidas e horários.",
+    kids_leadership_title: "Liderança",
+    kids_leader_1_role: "Coordenação",
+    kids_leader_1_name: "Equipe do Ministério Infantil",
+    kids_leader_2_role: "Apoio & voluntários",
+    kids_leader_2_name: "Servindo em escala com treinamento e cuidado",
 
     // Study page
     study_title: "Estudo Bíblico",
@@ -292,6 +319,7 @@ export const translations = {
     nav_cultos: "Services",
     nav_missoes: "Missions",
     nav_ministerios: "Ministries",
+    nav_infantil: "Kids",
     nav_cantina: "Cafeteria",
     nav_celulas: "Home Groups",
     nav_familia_pastoral: "Pastoral Family",
@@ -361,6 +389,32 @@ export const translations = {
     ministries_subtitle: "Explore ministries and get involved. Official photos are loaded from social networks.",
     view_details: "View details",
     back: "Back",
+
+    // Kids ministry
+    kids_title: "Children’s Ministry",
+    kids_subtitle: "Caring for kids with love, teaching, and safety",
+    kids_about_title: "About",
+    kids_about_text:
+      "We welcome children and families with care and responsibility, teaching God’s Word in a simple and practical way.",
+    kids_mission_values_title: "Mission & values",
+    kids_mission_text:
+      "To serve children with joy and reverence, helping them know Jesus and supporting parents in the Christian formation of the home.",
+    kids_value_1: "Bible-based: Jesus at the center of every gathering.",
+    kids_value_2: "Safety & care: a protected and respectful environment.",
+    kids_value_3: "Welcome: every child is seen, heard, and loved.",
+    kids_value_4: "Family partnership: walking alongside parents and guardians.",
+    kids_activities_title: "Activities",
+    kids_activity_1: "Bible lessons and stories by age group",
+    kids_activity_2: "Worship, prayer, and practical application",
+    kids_activity_3: "Special dates and family moments",
+    kids_how_title: "How to join",
+    kids_how_text:
+      "Talk to the Children’s Ministry team on Sunday; you’ll receive check-in guidance, age ranges, and schedules.",
+    kids_leadership_title: "Leadership",
+    kids_leader_1_role: "Coordination",
+    kids_leader_1_name: "Children’s Ministry team",
+    kids_leader_2_role: "Support & volunteers",
+    kids_leader_2_name: "Serving on a rota with training and care",
 
     study_title: "Bible Study",
     study_subtitle: "Join our online Bible study. Click the button below to open the meetings page.",
@@ -555,6 +609,7 @@ export const translations = {
     nav_cultos: "Cultes",
     nav_missoes: "Missions",
     nav_ministerios: "Ministères",
+    nav_infantil: "Enfants",
     nav_cantina: "Cantine",
     nav_celulas: "Cellules",
     nav_familia_pastoral: "Famille pastorale",
@@ -625,6 +680,32 @@ export const translations = {
       "Découvrez les ministères et participez. Les photos officielles proviennent des réseaux sociaux.",
     view_details: "Voir les détails",
     back: "Retour",
+
+    // Kids ministry
+    kids_title: "Ministère des enfants",
+    kids_subtitle: "Prendre soin des enfants avec amour, enseignement et sécurité",
+    kids_about_title: "À propos",
+    kids_about_text:
+      "Nous accueillons les enfants et les familles avec attention et responsabilité, en enseignant la Parole de Dieu de manière simple et concrète.",
+    kids_mission_values_title: "Mission et valeurs",
+    kids_mission_text:
+      "Servir les enfants avec joie et respect, les aider à connaître Jésus et soutenir les parents dans la formation chrétienne du foyer.",
+    kids_value_1: "La Bible comme base : Jésus au centre de chaque rencontre.",
+    kids_value_2: "Sécurité et soin : un environnement protégé et respectueux.",
+    kids_value_3: "Accueil : chaque enfant est vu, écouté et aimé.",
+    kids_value_4: "Partenariat avec la famille : marcher avec les parents et responsables.",
+    kids_activities_title: "Activités",
+    kids_activity_1: "Leçons et histoires bibliques par tranche d’âge",
+    kids_activity_2: "Louange, prière et mise en pratique",
+    kids_activity_3: "Dates spéciales et moments en famille",
+    kids_how_title: "Comment participer",
+    kids_how_text:
+      "Parlez à l’équipe du Ministère des enfants le dimanche ; vous recevrez les informations de check-in, les âges concernés et les horaires.",
+    kids_leadership_title: "Responsables",
+    kids_leader_1_role: "Coordination",
+    kids_leader_1_name: "Équipe du Ministère des enfants",
+    kids_leader_2_role: "Soutien et bénévoles",
+    kids_leader_2_name: "Service par planning, avec formation et accompagnement",
 
     study_title: "Étude biblique",
     study_subtitle:
