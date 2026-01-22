@@ -21,6 +21,17 @@ export default function AdminSetup() {
   const [showRecoveryEmail, setShowRecoveryEmail] = useState(false);
   const navigate = useNavigate();
 
+  const getBackendErrorCode = (err: unknown) => {
+    const raw = (err as any)?.context?.body;
+    if (!raw) return "";
+    try {
+      const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
+      return String(parsed?.error || "");
+    } catch {
+      return "";
+    }
+  };
+
   const schema = useMemo(
     () =>
       z.object({
@@ -63,8 +74,7 @@ export default function AdminSetup() {
                   // supabase-js can return a FunctionsHttpError for non-2xx responses.
                   // In this case, the JSON body may still contain our structured error.
                   if (error) {
-                    const body = (error as any)?.context?.body;
-                    const backendError = String(body?.error || "");
+                    const backendError = getBackendErrorCode(error);
                     if (backendError === "admin_already_configured") {
                       setShowRecoveryEmail(true);
                       toast({
@@ -92,6 +102,15 @@ export default function AdminSetup() {
                   setRecoveryLink(data.recoveryLink || null);
                   toast({ title: "Admin criado!" });
                 } catch (e: any) {
+                  const backendError = getBackendErrorCode(e);
+                  if (backendError === "admin_already_configured") {
+                    setShowRecoveryEmail(true);
+                    toast({
+                      title: "Admin já configurado",
+                      description: "Envie um link de recuperação para definir/alterar a senha desse email.",
+                    });
+                    return;
+                  }
                   toast({
                     title: "Não foi possível configurar",
                     description: e?.message ?? "Tente novamente.",
