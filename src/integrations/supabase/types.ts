@@ -44,6 +44,42 @@ export type Database = {
         }
         Relationships: []
       }
+      kids_ministry_signups: {
+        Row: {
+          child_age: number | null
+          child_name: string
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          parent_name: string
+          phone: string | null
+          source_slug: string
+        }
+        Insert: {
+          child_age?: number | null
+          child_name: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          parent_name: string
+          phone?: string | null
+          source_slug?: string
+        }
+        Update: {
+          child_age?: number | null
+          child_name?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          parent_name?: string
+          phone?: string | null
+          source_slug?: string
+        }
+        Relationships: []
+      }
       ministries: {
         Row: {
           created_at: string
