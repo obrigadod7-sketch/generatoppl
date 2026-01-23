@@ -343,6 +343,48 @@ export type Database = {
           },
         ]
       }
+      finance_monthly: {
+        Row: {
+          church_id: string
+          created_at: string
+          created_by: string
+          donations: number
+          expenses: number
+          id: string
+          month: string
+          notes: string | null
+          offerings: number
+          tithes: number
+          updated_at: string
+        }
+        Insert: {
+          church_id?: string
+          created_at?: string
+          created_by: string
+          donations?: number
+          expenses?: number
+          id?: string
+          month: string
+          notes?: string | null
+          offerings?: number
+          tithes?: number
+          updated_at?: string
+        }
+        Update: {
+          church_id?: string
+          created_at?: string
+          created_by?: string
+          donations?: number
+          expenses?: number
+          id?: string
+          month?: string
+          notes?: string | null
+          offerings?: number
+          tithes?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       guardians: {
         Row: {
           church_id: string | null
