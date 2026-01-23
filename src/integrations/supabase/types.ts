@@ -14,6 +14,68 @@ export type Database = {
   }
   public: {
     Tables: {
+      assistant_conversations: {
+        Row: {
+          church_id: string
+          created_at: string
+          created_by: string
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          church_id?: string
+          created_at?: string
+          created_by: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          church_id?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      assistant_messages: {
+        Row: {
+          church_id: string
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          role: string
+        }
+        Insert: {
+          church_id?: string
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          role: string
+        }
+        Update: {
+          church_id?: string
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assistant_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "assistant_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       checkins: {
         Row: {
           checked_in_at: string
