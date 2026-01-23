@@ -10,7 +10,26 @@ export default function DashboardHome() {
         <p className="mt-1 text-sm text-muted-foreground">Acesso rápido às áreas do sistema.</p>
       </header>
 
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card className="shadow-elev">
+          <CardHeader>
+            <CardTitle>Membros</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">
+              Cadastro, listagem e filtros por ministério, idade, status e participação.
+            </p>
+            <div className="mt-4">
+              <Link
+                to="/dashboard/membros"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-elev"
+              >
+                Abrir Membros
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card className="shadow-elev">
           <CardHeader>
             <CardTitle>Assistente da Igreja</CardTitle>
