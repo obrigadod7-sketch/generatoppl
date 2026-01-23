@@ -44,6 +44,7 @@ export default function DashboardLayout() {
             <div className="sticky top-20 rounded-xl bg-card p-4 shadow-elev ring-1 ring-border">
               <nav className="grid gap-1">
                 <NavItem to="/dashboard" label="Visão geral" />
+                <NavItem to="/dashboard/membros" label="Membros" />
                 <NavItem to="/dashboard/kids" label="Kids" />
                 <NavItem to="/dashboard/aluno" label="Área do Aluno" />
               </nav>
