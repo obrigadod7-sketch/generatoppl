@@ -450,6 +450,57 @@ export type Database = {
         }
         Relationships: []
       }
+      members: {
+        Row: {
+          birth_date: string | null
+          church_id: string
+          created_at: string
+          created_by: string
+          email: string | null
+          first_name: string
+          id: string
+          last_name: string | null
+          ministry: string | null
+          notes: string | null
+          participation: string | null
+          phone: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          birth_date?: string | null
+          church_id?: string
+          created_at?: string
+          created_by: string
+          email?: string | null
+          first_name: string
+          id?: string
+          last_name?: string | null
+          ministry?: string | null
+          notes?: string | null
+          participation?: string | null
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          birth_date?: string | null
+          church_id?: string
+          created_at?: string
+          created_by?: string
+          email?: string | null
+          first_name?: string
+          id?: string
+          last_name?: string | null
+          ministry?: string | null
+          notes?: string | null
+          participation?: string | null
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           channel: string
