@@ -27,6 +27,7 @@ import { ProtectedTeamRoute } from "./components/auth/ProtectedTeamRoute";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import DashboardHome from "./pages/dashboard/DashboardHome";
 import DashboardAluno from "./pages/dashboard/DashboardAluno";
+import ChurchAssistant from "./pages/dashboard/ChurchAssistant";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,7 @@ const App = () => (
               }
             >
               <Route index element={<DashboardHome />} />
+              <Route path="assistant" element={<ChurchAssistant />} />
               <Route path="aluno" element={<DashboardAluno />} />
               <Route path="kids" element={<KidsDashboardLayout basePath="/dashboard/kids" />}>
                 <Route index element={<KidsDashboardHome />} />
