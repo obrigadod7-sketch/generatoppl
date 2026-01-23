@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { ElementorHeader } from "@/components/site/ElementorHeader";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -34,6 +34,18 @@ export default function KidsDashboardLayout({ basePath = "/kids/dashboard" }: Ki
               <p className="font-display text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                 Dashboard
               </p>
+
+              <div className="mt-3 rounded-lg border border-border bg-background p-3">
+                <p className="text-xs text-muted-foreground">
+                  Novo painel unificado (equipe) com o <strong>Assistente da Igreja</strong>.
+                </p>
+                <div className="mt-2">
+                  <Button asChild size="sm" className="w-full">
+                    <Link to="/dashboard">Abrir /dashboard</Link>
+                  </Button>
+                </div>
+              </div>
+
               <nav className="mt-3 grid gap-1">
                 <NavItem to={`${basePath}`} label="Visão geral" />
                 <NavItem to={`${basePath}/criancas`} label="Crianças & Famílias" />
@@ -58,6 +70,20 @@ export default function KidsDashboardLayout({ basePath = "/kids/dashboard" }: Ki
           </aside>
 
           <main className="min-w-0 flex-1">
+            <div className="mb-4 rounded-xl border border-border bg-card p-4 shadow-elev lg:hidden">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold">Novo painel unificado</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    O Assistente da Igreja fica no <strong>/dashboard</strong>.
+                  </p>
+                </div>
+                <Button asChild size="sm">
+                  <Link to="/dashboard">Abrir /dashboard</Link>
+                </Button>
+              </div>
+            </div>
+
             <Outlet />
           </main>
         </div>
