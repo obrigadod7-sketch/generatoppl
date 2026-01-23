@@ -23,6 +23,10 @@ import KidsEventsPage from "./pages/kids/KidsEventsPage";
 import KidsCheckinsPage from "./pages/kids/KidsCheckinsPage";
 import KidsLeadsPage from "./pages/kids/KidsLeadsPage";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
+import { ProtectedTeamRoute } from "./components/auth/ProtectedTeamRoute";
+import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import DashboardHome from "./pages/dashboard/DashboardHome";
+import DashboardAluno from "./pages/dashboard/DashboardAluno";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +51,26 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/setup-admin" element={<AdminSetup />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+
+            {/* Site dashboard */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedTeamRoute>
+                  <DashboardLayout />
+                </ProtectedTeamRoute>
+              }
+            >
+              <Route index element={<DashboardHome />} />
+              <Route path="aluno" element={<DashboardAluno />} />
+              <Route path="kids" element={<KidsDashboardLayout basePath="/dashboard/kids" />}>
+                <Route index element={<KidsDashboardHome />} />
+                <Route path="criancas" element={<KidsChildrenPage />} />
+                <Route path="eventos" element={<KidsEventsPage />} />
+                <Route path="checkin" element={<KidsCheckinsPage />} />
+                <Route path="leads" element={<KidsLeadsPage />} />
+              </Route>
+            </Route>
             <Route
               path="/kids/dashboard"
               element={

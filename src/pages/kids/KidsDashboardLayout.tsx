@@ -3,6 +3,11 @@ import { ElementorHeader } from "@/components/site/ElementorHeader";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
+type KidsDashboardLayoutProps = {
+  /** Base path for internal nav links. Defaults to /kids/dashboard. */
+  basePath?: string;
+};
+
 const NavItem = ({ to, label }: { to: string; label: string }) => (
   <NavLink
     to={to}
@@ -17,7 +22,7 @@ const NavItem = ({ to, label }: { to: string; label: string }) => (
   </NavLink>
 );
 
-export default function KidsDashboardLayout() {
+export default function KidsDashboardLayout({ basePath = "/kids/dashboard" }: KidsDashboardLayoutProps) {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <ElementorHeader />
@@ -30,11 +35,11 @@ export default function KidsDashboardLayout() {
                 Dashboard
               </p>
               <nav className="mt-3 grid gap-1">
-                <NavItem to="/kids/dashboard" label="Visão geral" />
-                <NavItem to="/kids/dashboard/criancas" label="Crianças & Famílias" />
-                <NavItem to="/kids/dashboard/checkin" label="Check-in / Check-out" />
-                <NavItem to="/kids/dashboard/eventos" label="Eventos" />
-                <NavItem to="/kids/dashboard/leads" label="Leads" />
+                <NavItem to={`${basePath}`} label="Visão geral" />
+                <NavItem to={`${basePath}/criancas`} label="Crianças & Famílias" />
+                <NavItem to={`${basePath}/checkin`} label="Check-in / Check-out" />
+                <NavItem to={`${basePath}/eventos`} label="Eventos" />
+                <NavItem to={`${basePath}/leads`} label="Leads" />
               </nav>
 
               <div className="mt-4 pt-4 border-t border-border">
