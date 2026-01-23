@@ -58,16 +58,44 @@ const App = () => (
             <Route
               path="/dashboard"
               element={
-                <ProtectedTeamRoute>
+                <ProtectedRoute>
                   <DashboardLayout />
-                </ProtectedTeamRoute>
+                </ProtectedRoute>
               }
             >
               <Route index element={<DashboardHome />} />
-              <Route path="assistant" element={<ChurchAssistant />} />
-              <Route path="membros" element={<DashboardMembers />} />
-              <Route path="aluno" element={<DashboardAluno />} />
-              <Route path="kids" element={<KidsDashboardLayout basePath="/dashboard/kids" />}>
+              <Route
+                path="assistant"
+                element={
+                  <ProtectedTeamRoute>
+                    <ChurchAssistant />
+                  </ProtectedTeamRoute>
+                }
+              />
+              <Route
+                path="membros"
+                element={
+                  <ProtectedTeamRoute>
+                    <DashboardMembers />
+                  </ProtectedTeamRoute>
+                }
+              />
+              <Route
+                path="aluno"
+                element={
+                  <ProtectedTeamRoute>
+                    <DashboardAluno />
+                  </ProtectedTeamRoute>
+                }
+              />
+              <Route
+                path="kids"
+                element={
+                  <ProtectedTeamRoute>
+                    <KidsDashboardLayout basePath="/dashboard/kids" />
+                  </ProtectedTeamRoute>
+                }
+              >
                 <Route index element={<KidsDashboardHome />} />
                 <Route path="criancas" element={<KidsChildrenPage />} />
                 <Route path="eventos" element={<KidsEventsPage />} />
