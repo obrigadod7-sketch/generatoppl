@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { FinanceMonthlyCard } from "@/components/dashboard/FinanceMonthlyCard";
+import { useHasAnyRole } from "@/hooks/useHasAnyRole";
 
 export default function DashboardHome() {
+  const teamQ = useHasAnyRole(["admin", "leader", "volunteer"]);
+
   return (
     <div className="space-y-6">
       <header>
@@ -11,6 +15,10 @@ export default function DashboardHome() {
       </header>
 
       <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <FinanceMonthlyCard />
+
+        {teamQ.data ? (
+          <>
         <Card className="shadow-elev">
           <CardHeader>
             <CardTitle>Membros</CardTitle>
@@ -84,6 +92,8 @@ export default function DashboardHome() {
             </div>
           </CardContent>
         </Card>
+          </>
+        ) : null}
       </section>
     </div>
   );

@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
+import { useHasAnyRole } from "@/hooks/useHasAnyRole";
 import { supabase } from "@/integrations/supabase/client";
 
 const NavItem = ({ to, label }: { to: string; label: string }) => (
@@ -16,6 +17,8 @@ const NavItem = ({ to, label }: { to: string; label: string }) => (
 );
 
 export default function DashboardLayout() {
+  const teamQ = useHasAnyRole(["admin", "leader", "volunteer"]);
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
@@ -44,9 +47,13 @@ export default function DashboardLayout() {
             <div className="sticky top-20 rounded-xl bg-card p-4 shadow-elev ring-1 ring-border">
               <nav className="grid gap-1">
                 <NavItem to="/dashboard" label="Visão geral" />
-                <NavItem to="/dashboard/membros" label="Membros" />
-                <NavItem to="/dashboard/kids" label="Kids" />
-                <NavItem to="/dashboard/aluno" label="Área do Aluno" />
+                {teamQ.data ? (
+                  <>
+                    <NavItem to="/dashboard/membros" label="Membros" />
+                    <NavItem to="/dashboard/kids" label="Kids" />
+                    <NavItem to="/dashboard/aluno" label="Área do Aluno" />
+                  </>
+                ) : null}
               </nav>
 
               <div className="mt-4 pt-4 border-t border-border">
