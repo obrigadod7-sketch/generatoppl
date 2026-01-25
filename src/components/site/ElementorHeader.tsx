@@ -7,7 +7,7 @@ import { Menu, PauseCircle, PlayCircle, Volume2, VolumeX } from "lucide-react";
 import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
 import { useI18n } from "@/i18n/I18nProvider";
 
-import topoBanner from "@/assets/banner-topo-ministerio-infantil.jpg";
+import topoBanner from "@/assets/banner-topo-dia-da-biblia.jpg";
 
 export function ElementorHeader() {
   const { t } = useI18n();
@@ -68,7 +68,16 @@ export function ElementorHeader() {
           src={topoBanner}
           alt=""
           aria-hidden
-          className="h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-60 blur-xl scale-110"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+        <img
+          src={topoBanner}
+          alt=""
+          aria-hidden
+          className="relative h-full w-full object-contain object-center"
           loading="eager"
           decoding="async"
           fetchPriority="high"
