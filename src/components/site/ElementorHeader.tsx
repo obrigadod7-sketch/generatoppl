@@ -7,7 +7,7 @@ import { Menu, PauseCircle, PlayCircle, Volume2, VolumeX } from "lucide-react";
 import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
 import { useI18n } from "@/i18n/I18nProvider";
 
-import topoBanner from "@/assets/banner-topo-dia-da-biblia.jpg";
+import topoBanner from "@/assets/banner-topo-ministerio-infantil.jpg";
 
 export function ElementorHeader() {
   const { t } = useI18n();
