@@ -7,6 +7,8 @@ import { Menu, PauseCircle, PlayCircle, Volume2, VolumeX } from "lucide-react";
 import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
 import { useI18n } from "@/i18n/I18nProvider";
 
+import topoBanner from "@/assets/banner-topo-dia-da-biblia.jpg";
+
 export function ElementorHeader() {
   const { t } = useI18n();
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -60,8 +62,21 @@ export function ElementorHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-mel-blue700/90 py-4 backdrop-blur-sm md:py-3">
-      <div className="mx-auto w-full max-w-[1600px] px-6">
+    <header className="sticky top-0 z-50 py-4 md:py-3 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img
+          src={topoBanner}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover object-center"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+        <div aria-hidden className="absolute inset-0 bg-mel-blue700/70 backdrop-blur-sm" />
+      </div>
+
+      <div className="relative mx-auto w-full max-w-[1600px] px-6">
         {/* Mobile: barra azul + hamburger central */}
         <div className="flex items-center justify-center md:hidden">
           <Sheet>
