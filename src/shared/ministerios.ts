@@ -14,6 +14,10 @@ import casais06 from "@/assets/casais-06-treated.jpg";
 import casais07 from "@/assets/casais-07-treated.jpg";
 import casais08 from "@/assets/casais-08-treated.jpg";
 
+import ministerioInfantil01 from "@/assets/ministerio-infantil-01.jpg";
+import ministerioInfantil02 from "@/assets/ministerio-infantil-02.jpg";
+import ministerioInfantil03 from "@/assets/ministerio-infantil-03.jpg";
+
 export type Ministerio = {
   slug: string;
   titulo: string;
@@ -202,6 +206,7 @@ export const MINISTERIOS: Ministerio[] = [
       "Um ministério dedicado a receber crianças e famílias com acolhimento, discipulado e responsabilidade, apoiando os pais na formação cristã.",
     // Conteúdo completo (PT/EN/FR) é exibido via i18n na página de detalhe.
     imagem: bgHero,
+    galeria: [ministerioInfantil01, ministerioInfantil02, ministerioInfantil03],
   },
   {
     slug: "tesouraria",
